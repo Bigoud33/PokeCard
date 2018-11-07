@@ -1,7 +1,8 @@
-package com.example.lpiem.pokecard
+package com.example.lpiem.pokecard.presentation.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.lpiem.pokecard.R
 
 class MainActivity : AppCompatActivity() {
 
