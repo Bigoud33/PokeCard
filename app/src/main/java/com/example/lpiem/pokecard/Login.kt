@@ -21,8 +21,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_login.*
 import android.widget.TextView
-
-
+import com.example.lpiem.pokecard.presentation.ui.MainActivity
 
 
 class Login : AppCompatActivity(), View.OnClickListener {
@@ -87,7 +86,7 @@ class Login : AppCompatActivity(), View.OnClickListener {
         }
         callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
-        val intent = Intent(this,MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 
@@ -100,7 +99,7 @@ class Login : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(this@Login, "Connected to your google account with success", LENGTH_SHORT).show()
 
             updateUI(account)
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.

@@ -5,10 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 
+private const val SPLASH_TIME_OUT: Long = 3000
+
 class SplashScreen : AppCompatActivity() {
     private var mDelayHandler: Handler? = null
-    private val SPLASH_TIME_OUT: Long = 3000
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,7 @@ class SplashScreen : AppCompatActivity() {
         mDelayHandler!!.postDelayed(mRunnable, SPLASH_TIME_OUT)
     }
 
-    internal val mRunnable: Runnable = Runnable {
+    private val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
 
             val intent = Intent(applicationContext, Login::class.java)
