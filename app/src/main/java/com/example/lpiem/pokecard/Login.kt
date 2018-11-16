@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import com.facebook.AccessToken
@@ -22,6 +24,7 @@ import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_login.*
 import android.widget.TextView
 import com.example.lpiem.pokecard.presentation.ui.MainActivity
+import java.util.regex.Pattern
 
 
 class Login : AppCompatActivity(), View.OnClickListener {
@@ -29,11 +32,16 @@ class Login : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var callbackManager: CallbackManager
     private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var emailField: EditText
+    private lateinit var passwordField: EditText
     val RC_SIGN_IN: Int = 1
     val TAG: String= "TAGGoogle"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+
+        //Facebook
 
         callbackManager = CallbackManager.Factory.create()
 
@@ -62,6 +70,7 @@ class Login : AppCompatActivity(), View.OnClickListener {
         val accessToken = AccessToken.getCurrentAccessToken()
         val isLoggedIn = accessToken != null && !accessToken.isExpired
 
+        // Google
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -72,6 +81,15 @@ class Login : AppCompatActivity(), View.OnClickListener {
         val signInButton = findViewById<SignInButton>(R.id.sign_in_button)
         signInButton.setSize(SignInButton.SIZE_STANDARD)
         signInButton.setOnClickListener(this)
+
+        // Other
+        val registerButton = findViewById<Button>(R.id.registerBtn)
+        val loginButtonEmail = findViewById<Button>(R.id.loginBtn)
+        emailField = findViewById(R.id.email)
+        passwordField = findViewById(R.id.password)
+
+        registerButton.setOnClickListener(this)
+        loginButtonEmail.setOnClickListener(this)
 
 
 
@@ -119,6 +137,8 @@ class Login : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.sign_in_button -> signInGoogle()
+            R.id.registerBtn -> register()
+            R.id.loginBtn -> login()
         }
 
     }
@@ -126,6 +146,37 @@ class Login : AppCompatActivity(), View.OnClickListener {
     private fun signInGoogle() {
         val signInIntent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    private fun register(){
+        val intent = Intent(this, Register::class.java)
+        startActivity(intent)
+    }
+
+    private fun login(){
+        // emailfield or password field is empty
+        if(emailField.text.isEmpty() || passwordField.text.isEmpty() ) {
+            Toast.makeText(this@Login, "Email or password is missing", LENGTH_SHORT).show()
+        }
+        // the email is not valid
+        else if (!(emailField.text.isEmpty()) && !(isEmailValid(emailField.text.toString()))){
+            Toast.makeText(this,"Please enter a valid email address", LENGTH_SHORT).show()
+        } else {
+            // MUST check if email and password exists and are good
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    fun isEmailValid(email: String): Boolean {
+        return Pattern.compile(
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@"
+                        + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|"
+                        + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$"
+        ).matcher(email).matches()
     }
 
 

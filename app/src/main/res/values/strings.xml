@@ -4,4 +4,13 @@
     <string name="developers">App created by Brandon Gosse and Jordan Bonnot</string>
     <string name="facebook_app_id">271366743513778</string>
     <string name="fb_login_protocol_scheme">fb271366743513778</string>
+    <string name="registerMessage">Vous pouvez vous inscrire par email en appuyant sur le bouton ci-dessous ....</string>
+    <string name="registerButton">S\'inscrire</string>
+    <string name="loginMessage">... ou alors vous connecter si vous avez déjà un compte, vous pouvez également vous connecter grâce à Facebook ou Google</string>
+    <string name="loginButton">Se connecter</string>
+    <string name="emailField">E-mail</string>
+    <string name="passwordField">Mot de passe</string>
+    <string name="pseudoField">Pseudo</string>
+    <string name="alreadyHaveAccount">J\'ai déjà un compte</string>
+    <string name="registerMessage2">Inscrivez-vous ici.\nSi vous avez déjà un compte, cliquez sur le bouton "J'ai déjà un compte"</string>
 </resources>
