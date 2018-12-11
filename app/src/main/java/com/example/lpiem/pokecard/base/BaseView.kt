@@ -1,2 +1,5 @@
-package com.example.lpiem.pokecard.base 
+package com.example.lpiem.pokecard.base
 
+interface BaseView {
+
+}
