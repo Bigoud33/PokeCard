@@ -101,11 +101,13 @@ class Login : AppCompatActivity(), View.OnClickListener {
             // a listener.
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
+        } else {
+            callbackManager.onActivityResult(requestCode, resultCode, data)
+            super.onActivityResult(requestCode, resultCode, data)
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
         }
-        callbackManager.onActivityResult(requestCode, resultCode, data)
-        super.onActivityResult(requestCode, resultCode, data)
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
