@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.lpiem.pokecard.presentation.ui.MainActivity
+import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
 import java.util.regex.Pattern
 
 class Register : AppCompatActivity(), View.OnClickListener {
@@ -49,7 +49,7 @@ class Register : AppCompatActivity(), View.OnClickListener {
         }
         else {
             //MUST Check if email not already exists + and pseudo not already exists
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }

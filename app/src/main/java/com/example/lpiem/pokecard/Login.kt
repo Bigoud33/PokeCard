@@ -23,7 +23,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_login.*
 import android.widget.TextView
-import com.example.lpiem.pokecard.presentation.ui.MainActivity
+import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
 import java.util.regex.Pattern
 
 

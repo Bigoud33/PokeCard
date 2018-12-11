@@ -5,10 +5,11 @@ import com.example.lpiem.pokecard.PokeCardApplication
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
+import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidInjectionModule::class, RetrofitModule::class, ActivityModule::class])
+@Component(modules = [AndroidSupportInjectionModule::class, RetrofitModule::class, ActivityModule::class])
 interface AppComponent {
 
     @Component.Builder
