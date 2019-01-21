@@ -20,14 +20,14 @@ class Register : AppCompatActivity(), View.OnClickListener {
     lateinit var passwordField: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.fragment_register)
 
 
         registerButton.findViewById<Button>(R.id.registerButton2)
         alreadyHaveAccountButton.findViewById<Button>(R.id.alreadyHaveAccount)
-        emailField.findViewById<EditText>(R.id.emailField2)
+        emailField.findViewById<EditText>(R.id.emailField)
         pseudoField.findViewById<EditText>(R.id.pseudoField)
-        passwordField.findViewById<EditText>(R.id.passwordField2)
+        passwordField.findViewById<EditText>(R.id.passwordField)
 
         registerButton.setOnClickListener(this)
         registerButton.setOnClickListener(this)
