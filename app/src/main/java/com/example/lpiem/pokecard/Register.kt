@@ -34,7 +34,7 @@ class Register : AppCompatActivity() {
             Toast.makeText(this,"Veuillez entrer un email valide",Toast.LENGTH_SHORT).show()
         }
         else {
-            //MUST Check if email not already exists + and pseudo not already exists
+            TODO("//MUST Check if email not already exists + and pseudo not already exists")
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
