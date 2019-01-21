@@ -1,24 +1,35 @@
 package com.example.lpiem.pokecard.presentation.ui.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.example.lpiem.pokecard.Login
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
-import com.example.lpiem.pokecard.presentation.presenter.MainFragmentPresenter
 import com.example.lpiem.pokecard.presentation.presenter.RegisterFragmentPresenter
 import com.example.lpiem.pokecard.presentation.presenter.RegisterView
+import com.example.lpiem.pokecard.presentation.ui.activities.LoginActivity
 import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_register.*
 import java.util.regex.Pattern
+import javax.inject.Inject
 
 class RegisterFragment : BaseFragment<RegisterFragmentPresenter>(), RegisterView {
     override val layoutId: Int = R.layout.fragment_register
+
+    @Inject
     override lateinit var presenter: RegisterFragmentPresenter
+
+    override fun onAttach(context: Context?) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        presenter.attach(this)
 
         registerButton.setOnClickListener {
             register()
@@ -45,7 +56,7 @@ class RegisterFragment : BaseFragment<RegisterFragmentPresenter>(), RegisterView
     }
 
     private fun goToLoginActivity(){
-        val intent = Intent(context, Login::class.java)
+        val intent = Intent(context, LoginActivity::class.java)
         startActivity(intent)
         activity!!.finish()
 

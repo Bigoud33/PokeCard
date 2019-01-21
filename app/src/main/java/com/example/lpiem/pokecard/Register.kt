@@ -10,10 +10,10 @@ import android.widget.Toast
 import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
 import java.util.regex.Pattern
 
-class Register : AppCompatActivity(), View.OnClickListener {
+abstract class Register : AppCompatActivity(), View.OnClickListener {
 
 
-    lateinit var registerButton: Button
+    /*lateinit var registerButton: Button
     lateinit var alreadyHaveAccountButton: Button
     lateinit var emailField: EditText
     lateinit var pseudoField: EditText
@@ -69,5 +69,5 @@ class Register : AppCompatActivity(), View.OnClickListener {
                         + "[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|"
                         + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$"
         ).matcher(email).matches()
-    }
+    }*/
 }

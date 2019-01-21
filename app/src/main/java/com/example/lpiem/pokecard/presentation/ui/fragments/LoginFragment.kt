@@ -1,5 +1,6 @@
 package com.example.lpiem.pokecard.presentation.ui.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,11 +8,11 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.lpiem.pokecard.R
-import com.example.lpiem.pokecard.Register
 import com.example.lpiem.pokecard.base.BaseFragment
 import com.example.lpiem.pokecard.presentation.presenter.LoginFragmentPresenter
 import com.example.lpiem.pokecard.presentation.presenter.LoginView
 import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
+import com.example.lpiem.pokecard.presentation.ui.activities.RegisterActivity
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -24,8 +25,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_login.*
 import java.util.regex.Pattern
+import javax.inject.Inject
 
 class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
 
@@ -37,10 +40,18 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
     val TAG: String= "TAGGoogle"
 
     override val layoutId: Int = R.layout.fragment_login
+
+    @Inject
     override lateinit var presenter: LoginFragmentPresenter
+
+    override fun onAttach(context: Context?) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        presenter.attach(this)
         callbackManager = CallbackManager.Factory.create()
 
 
@@ -144,17 +155,17 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
     }
 
     private fun register(){
-        val intent = Intent(context, Register::class.java)
+        val intent = Intent(context, RegisterActivity::class.java)
         startActivity(intent)
     }
 
     private fun login(){
         // emailfield or password field is empty
-        if(emailField.text.isEmpty() || passwordField.text.isEmpty() ) {
+        if(email.text.isEmpty() || password.text.isEmpty() ) {
             Toast.makeText(context, "Email or password is missing", Toast.LENGTH_SHORT).show()
         }
         // the email is not valid
-        else if (!(emailField.text.isEmpty()) && !(isEmailValid(emailField.text.toString()))){
+        else if (!(email.text.isEmpty()) && !(isEmailValid(email.text.toString()))){
             Toast.makeText(context,"Please enter a valid email address", Toast.LENGTH_SHORT).show()
         } else {
             // MUST check if email and password exists and are good
