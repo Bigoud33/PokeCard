@@ -74,7 +74,7 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
             .requestEmail()
             .build()
 
-        mGoogleSignInClient = GoogleSignIn.getClient(activity?, gso)
+        mGoogleSignInClient = GoogleSignIn.getClient(this.activity!!,gso)
 
         sign_in_button.setSize(SignInButton.SIZE_STANDARD)
 
