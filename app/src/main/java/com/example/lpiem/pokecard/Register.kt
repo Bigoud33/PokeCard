@@ -8,35 +8,21 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
+import kotlinx.android.synthetic.main.activity_register.*
 import java.util.regex.Pattern
 
-class Register : AppCompatActivity(), View.OnClickListener {
+class Register : AppCompatActivity() {
 
-
-    lateinit var registerButton: Button
-    lateinit var alreadyHaveAccountButton: Button
-    lateinit var emailField: EditText
-    lateinit var pseudoField: EditText
-    lateinit var passwordField: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
 
-        registerButton.findViewById<Button>(R.id.registerButton2)
-        alreadyHaveAccountButton.findViewById<Button>(R.id.alreadyHaveAccount)
-        emailField.findViewById<EditText>(R.id.emailField2)
-        pseudoField.findViewById<EditText>(R.id.pseudoField)
-        passwordField.findViewById<EditText>(R.id.passwordField2)
-
-        registerButton.setOnClickListener(this)
-        registerButton.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.registerButton2 -> register()
-            R.id.alreadyHaveAccount -> goToLoginActivity()
+        alreadyHaveAccount.setOnClickListener {
+            goToLoginActivity()
+        }
+        registerButton.setOnClickListener {
+            register()
         }
     }
 
@@ -57,7 +43,7 @@ class Register : AppCompatActivity(), View.OnClickListener {
     private fun goToLoginActivity(){
         val intent = Intent(this, Login::class.java)
         startActivity(intent)
-
+        finish()
     }
 
     fun isEmailValid(email: String): Boolean {
