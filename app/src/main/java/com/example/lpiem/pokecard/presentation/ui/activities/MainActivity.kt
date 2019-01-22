@@ -1,10 +1,9 @@
 package com.example.lpiem.pokecard.presentation.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.lpiem.pokecard.R
-import com.example.lpiem.pokecard.presentation.presenter.MainActivityPresenter
 import com.example.lpiem.pokecard.presentation.ui.fragments.MainFragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector

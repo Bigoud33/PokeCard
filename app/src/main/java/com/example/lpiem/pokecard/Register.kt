@@ -27,10 +27,10 @@ class Register : AppCompatActivity() {
     }
 
     private fun register(){
-        if(emailField.text.isEmpty() || passwordField.text.isEmpty() || pseudoField.text.isEmpty()) {
+        if(emailField.text!!.isEmpty() || passwordField.text!!.isEmpty() || pseudoField.text!!.isEmpty()) {
             Toast.makeText(this, "Veuillez remplir tous les champs",Toast.LENGTH_SHORT).show()
         }
-        else if(!(emailField.text.isEmpty()) && !(isEmailValid(emailField.text.toString()))) {
+        else if(!(emailField.text!!.isEmpty()) && !(isEmailValid(emailField.text.toString()))) {
             Toast.makeText(this,"Veuillez entrer un email valide",Toast.LENGTH_SHORT).show()
         }
         else {
