@@ -1,8 +1,8 @@
 package com.example.lpiem.pokecard.presentation.ui.activities
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.presentation.ui.fragments.RegisterFragment
 import dagger.android.AndroidInjection
