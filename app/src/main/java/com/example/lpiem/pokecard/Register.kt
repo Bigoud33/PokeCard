@@ -10,24 +10,24 @@ import android.widget.Toast
 import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
 import java.util.regex.Pattern
 
-class Register : AppCompatActivity(), View.OnClickListener {
+abstract class Register : AppCompatActivity(), View.OnClickListener {
 
 
-    lateinit var registerButton: Button
+    /*lateinit var registerButton: Button
     lateinit var alreadyHaveAccountButton: Button
     lateinit var emailField: EditText
     lateinit var pseudoField: EditText
     lateinit var passwordField: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.fragment_register)
 
 
         registerButton.findViewById<Button>(R.id.registerButton2)
         alreadyHaveAccountButton.findViewById<Button>(R.id.alreadyHaveAccount)
-        emailField.findViewById<EditText>(R.id.emailField2)
+        emailField.findViewById<EditText>(R.id.emailField)
         pseudoField.findViewById<EditText>(R.id.pseudoField)
-        passwordField.findViewById<EditText>(R.id.passwordField2)
+        passwordField.findViewById<EditText>(R.id.passwordField)
 
         registerButton.setOnClickListener(this)
         registerButton.setOnClickListener(this)
@@ -69,5 +69,5 @@ class Register : AppCompatActivity(), View.OnClickListener {
                         + "[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|"
                         + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$"
         ).matcher(email).matches()
-    }
+    }*/
 }

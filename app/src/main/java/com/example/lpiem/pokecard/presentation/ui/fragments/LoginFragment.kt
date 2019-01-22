@@ -1,14 +1,18 @@
-package com.example.lpiem.pokecard
+package com.example.lpiem.pokecard.presentation.ui.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.View
-import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
+import com.example.lpiem.pokecard.R
+import com.example.lpiem.pokecard.base.BaseFragment
+import com.example.lpiem.pokecard.presentation.presenter.LoginFragmentPresenter
+import com.example.lpiem.pokecard.presentation.presenter.LoginView
+import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
+import com.example.lpiem.pokecard.presentation.ui.activities.RegisterActivity
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -21,14 +25,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_login.*
-import android.widget.TextView
-import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
 import java.util.regex.Pattern
+import javax.inject.Inject
 
-
-class Login : AppCompatActivity(), View.OnClickListener {
-
+class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
 
     private lateinit var callbackManager: CallbackManager
     private lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -36,13 +38,20 @@ class Login : AppCompatActivity(), View.OnClickListener {
     private lateinit var passwordField: EditText
     val RC_SIGN_IN: Int = 1
     val TAG: String= "TAGGoogle"
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_login)
 
+    override val layoutId: Int = R.layout.fragment_login
 
-        //Facebook
+    @Inject
+    override lateinit var presenter: LoginFragmentPresenter
 
+    override fun onAttach(context: Context?) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        presenter.attach(this)
         callbackManager = CallbackManager.Factory.create()
 
 
@@ -54,16 +63,16 @@ class Login : AppCompatActivity(), View.OnClickListener {
         // Callback registration
         login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
-                Toast.makeText(this@Login, "Connected to your Facebook account with success", LENGTH_SHORT).show()
+                Toast.makeText(context, "Connected to your Facebook account with success", Toast.LENGTH_SHORT).show()
             }
 
             override fun onCancel() {
-                Toast.makeText(this@Login, "Connection canceled", LENGTH_SHORT).show()
+                Toast.makeText(context, "Connection canceled", Toast.LENGTH_SHORT).show()
             }
 
             override fun onError(exception: FacebookException) {
-                Toast.makeText(this@Login, "Connection to your Facebook account failed", LENGTH_SHORT).show()
-                Toast.makeText(this@Login,exception.message, LENGTH_SHORT).show()
+                Toast.makeText(context, "Connection to your Facebook account failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,exception.message, Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -73,23 +82,26 @@ class Login : AppCompatActivity(), View.OnClickListener {
         // Google
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build()
+            .requestEmail()
+            .build()
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        mGoogleSignInClient = GoogleSignIn.getClient(this.activity!!,gso)
 
-        val signInButton = findViewById<SignInButton>(R.id.sign_in_button)
-        signInButton.setSize(SignInButton.SIZE_STANDARD)
-        signInButton.setOnClickListener(this)
+        sign_in_button.setSize(SignInButton.SIZE_STANDARD)
 
-        // Other
-        val registerButton = findViewById<Button>(R.id.registerBtn)
-        val loginButtonEmail = findViewById<Button>(R.id.loginBtn)
-        emailField = findViewById(R.id.email)
-        passwordField = findViewById(R.id.password)
+        // Oher
 
-        registerButton.setOnClickListener(this)
-        loginButtonEmail.setOnClickListener(this)
+
+
+        registerBtn.setOnClickListener {
+            register()
+        }
+        loginBtn.setOnClickListener {
+            login()
+        }
+        sign_in_button.setOnClickListener {
+            signInGoogle()
+        }
 
 
 
@@ -104,7 +116,7 @@ class Login : AppCompatActivity(), View.OnClickListener {
         } else {
             callbackManager.onActivityResult(requestCode, resultCode, data)
             super.onActivityResult(requestCode, resultCode, data)
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
 
@@ -116,10 +128,10 @@ class Login : AppCompatActivity(), View.OnClickListener {
             val account = completedTask.getResult(ApiException::class.java)
 
             // Signed in successfully, show authenticated UI.
-            Toast.makeText(this@Login, "Connected to your google account with success", LENGTH_SHORT).show()
+            Toast.makeText(context, "Connected to your google account with success", Toast.LENGTH_SHORT).show()
 
             updateUI(account)
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
@@ -131,19 +143,11 @@ class Login : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun updateUI(account: GoogleSignInAccount?) {
-        val c = findViewById<SignInButton>(R.id.sign_in_button)
-        val textView = c.getChildAt(0) as TextView
+
+        val textView = sign_in_button.getChildAt(0) as TextView
         textView.text = "Connecté en tant que "+account?.displayName
     }
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.sign_in_button -> signInGoogle()
-            R.id.registerBtn -> register()
-            R.id.loginBtn -> login()
-        }
-
-    }
 
     private fun signInGoogle() {
         val signInIntent = mGoogleSignInClient.signInIntent
@@ -151,38 +155,33 @@ class Login : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun register(){
-        val intent = Intent(this, Register::class.java)
+        val intent = Intent(context, RegisterActivity::class.java)
         startActivity(intent)
     }
 
     private fun login(){
         // emailfield or password field is empty
-        if(emailField.text.isEmpty() || passwordField.text.isEmpty() ) {
-            Toast.makeText(this@Login, "Email or password is missing", LENGTH_SHORT).show()
+        if(email.text.isEmpty() || password.text.isEmpty() ) {
+            Toast.makeText(context, "Email or password is missing", Toast.LENGTH_SHORT).show()
         }
         // the email is not valid
-        else if (!(emailField.text.isEmpty()) && !(isEmailValid(emailField.text.toString()))){
-            Toast.makeText(this,"Please enter a valid email address", LENGTH_SHORT).show()
+        else if (!(email.text.isEmpty()) && !(isEmailValid(email.text.toString()))){
+            Toast.makeText(context,"Please enter a valid email address", Toast.LENGTH_SHORT).show()
         } else {
             // MUST check if email and password exists and are good
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
     }
 
     fun isEmailValid(email: String): Boolean {
         return Pattern.compile(
-                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@"
-                        + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
-                        + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|"
-                        + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$"
+            "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@"
+                    + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                    + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                    + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                    + "[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|"
+                    + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$"
         ).matcher(email).matches()
     }
-
-
-
-
-
 }
