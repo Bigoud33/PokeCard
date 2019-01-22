@@ -34,8 +34,6 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
 
     private lateinit var callbackManager: CallbackManager
     private lateinit var mGoogleSignInClient: GoogleSignInClient
-    private lateinit var emailField: EditText
-    private lateinit var passwordField: EditText
     val RC_SIGN_IN: Int = 1
     val TAG: String= "TAGGoogle"
 
@@ -157,6 +155,7 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
     private fun register(){
         val intent = Intent(context, RegisterActivity::class.java)
         startActivity(intent)
+        activity!!.finish()
     }
 
     private fun login(){
