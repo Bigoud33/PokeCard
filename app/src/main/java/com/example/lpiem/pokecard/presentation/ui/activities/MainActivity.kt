@@ -10,6 +10,7 @@ import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_container)
+        //this.configureBottomView();
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
@@ -30,4 +32,24 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
                 .commit()
         }
     }
+
+    /*private fun configureBottomView(){
+        activity_main_bottom_navigation.setOnNavigationItemSelectedListener(item -> updateMainFragment(item.getItemId()));
+    }
+
+    private Boolean updateMainFragment(Integer integer){
+        switch (integer) {
+            case R.id.action_android:
+            this.mainFragment.updateDesignWhenUserClickedBottomView(MainFragment.REQUEST_ANDROID);
+            break;
+            case R.id.action_logo:
+            this.mainFragment.updateDesignWhenUserClickedBottomView(MainFragment.REQUEST_LOGO);
+            break;
+            case R.id.action_landscape:
+            this.mainFragment.updateDesignWhenUserClickedBottomView(MainFragment.REQUEST_LANDSCAPE);
+            break;
+        }
+        return true;
+    }*/
 }
+

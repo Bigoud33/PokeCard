@@ -13,4 +13,10 @@
     <string name="pseudoField">Pseudo</string>
     <string name="alreadyHaveAccount">J\'ai déjà un compte</string>
     <string name="registerMessage2">Inscrivez-vous ici.\nSi vous avez déjà un compte, cliquez sur le bouton "J'ai déjà un compte"</string>
+    <string name="myProfile">Mon Profil</string>
+    <string name="myPokedex">Mon Pokédex</string>
+    <string name="myFriends">Mes amis</string>
+    <string name="fights">Combattre</string>
+    <string name="pokeshop">Pokéshop</string>
+    <string name="myPokemons">Mes Pokémons</string>
 </resources>
