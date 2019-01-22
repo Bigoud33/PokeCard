@@ -6,13 +6,13 @@
         android:enabled="true"
         android:icon="@drawable/ic_pokeball"
         android:title="@string/myPokemons"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/action_pokeshop"
-        android:enabled="true"
-        android:icon="@drawable/ic_pokeshop"
-        android:title="@string/pokeshop"
-        app:showAsAction="ifRoom" />
+            android:id="@+id/action_pokeshop"
+            android:enabled="true"
+            android:icon="@drawable/ic_pokeshop"
+            android:title="@string/pokeshop"
+            app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_fights"
         android:enabled="true"
@@ -20,11 +20,11 @@
         android:title="@string/fights"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_friends"
-        android:enabled="true"
-        android:icon="@drawable/ic_friends"
-        android:title="@string/myFriends"
-        app:showAsAction="ifRoom" />
+            android:id="@+id/action_friends"
+            android:enabled="true"
+            android:icon="@drawable/ic_friends"
+            android:title="@string/myFriends"
+            app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_profile"
         android:enabled="true"

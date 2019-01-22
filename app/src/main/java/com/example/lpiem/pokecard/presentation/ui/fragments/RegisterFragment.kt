@@ -22,7 +22,7 @@ class RegisterFragment : BaseFragment<RegisterFragmentPresenter>(), RegisterView
     @Inject
     override lateinit var presenter: RegisterFragmentPresenter
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
@@ -42,10 +42,10 @@ class RegisterFragment : BaseFragment<RegisterFragmentPresenter>(), RegisterView
 
 
     private fun register(){
-        if(emailField.text.isEmpty() || passwordField.text.isEmpty() || pseudoField.text.isEmpty()) {
+        if(emailField.text!!.isEmpty() || passwordField.text!!.isEmpty() || pseudoField.text!!.isEmpty()) {
             Toast.makeText(context, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show()
         }
-        else if(!(emailField.text.isEmpty()) && !(isEmailValid(emailField.text.toString()))) {
+        else if(!(emailField.text!!.isEmpty()) && !(isEmailValid(emailField.text.toString()))) {
             Toast.makeText(context,"Veuillez entrer un email valide", Toast.LENGTH_SHORT).show()
         }
         else {

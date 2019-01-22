@@ -34,8 +34,6 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
 
     private lateinit var callbackManager: CallbackManager
     private lateinit var mGoogleSignInClient: GoogleSignInClient
-    private lateinit var emailField: EditText
-    private lateinit var passwordField: EditText
     val RC_SIGN_IN: Int = 1
     val TAG: String= "TAGGoogle"
 
@@ -44,7 +42,7 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
     @Inject
     override lateinit var presenter: LoginFragmentPresenter
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
@@ -157,15 +155,16 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
     private fun register(){
         val intent = Intent(context, RegisterActivity::class.java)
         startActivity(intent)
+        activity!!.finish()
     }
 
     private fun login(){
         // emailfield or password field is empty
-        if(email.text.isEmpty() || password.text.isEmpty() ) {
+        if(email.text!!.isEmpty() || password.text!!.isEmpty() ) {
             Toast.makeText(context, "Email or password is missing", Toast.LENGTH_SHORT).show()
         }
         // the email is not valid
-        else if (!(email.text.isEmpty()) && !(isEmailValid(email.text.toString()))){
+        else if (!(email.text!!.isEmpty()) && !(isEmailValid(email.text.toString()))){
             Toast.makeText(context,"Please enter a valid email address", Toast.LENGTH_SHORT).show()
         } else {
             // MUST check if email and password exists and are good
