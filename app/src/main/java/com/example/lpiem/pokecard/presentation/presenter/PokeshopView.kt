@@ -1,4 +1,6 @@
 package com.example.lpiem.pokecard.presentation.presenter
 
-interface PokeshopView {
+import com.example.lpiem.pokecard.base.BaseView
+
+interface PokeshopView: BaseView {
 }

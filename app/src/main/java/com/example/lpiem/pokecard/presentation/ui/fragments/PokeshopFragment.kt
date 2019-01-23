@@ -1,4 +1,27 @@
 package com.example.lpiem.pokecard.presentation.ui.fragments
 
-class PokeshopFragment {
+import android.content.Context
+import android.os.Bundle
+import com.example.lpiem.pokecard.base.BaseFragment
+import com.example.lpiem.pokecard.presentation.presenter.PokeshopFragmentPresenter
+import com.example.lpiem.pokecard.presentation.presenter.PokeshopView
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
+
+class PokeshopFragment : BaseFragment<PokeshopFragmentPresenter>(), PokeshopView {
+
+    override val layoutId: Int = R.layout.fragment_pokeshop
+
+    @Inject
+    override lateinit var presenter: PokeshopFragmentPresenter
+
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        presenter.attach(this)
+    }
 }

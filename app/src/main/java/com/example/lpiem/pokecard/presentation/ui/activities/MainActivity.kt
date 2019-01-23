@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.presentation.ui.fragments.PokedexFragment
+import com.example.lpiem.pokecard.presentation.ui.fragments.PokeshopFragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

@@ -5,6 +5,7 @@ import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
 import com.example.lpiem.pokecard.presentation.ui.activities.RegisterActivity
 import com.example.lpiem.pokecard.presentation.ui.fragments.LoginFragment
 import com.example.lpiem.pokecard.presentation.ui.fragments.PokedexFragment
+import com.example.lpiem.pokecard.presentation.ui.fragments.PokeshopFragment
 import com.example.lpiem.pokecard.presentation.ui.fragments.RegisterFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -28,4 +29,7 @@ abstract class ActivityModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributePokedexFragment(): PokedexFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributePokeshopFragment(): PokeshopFragment
 }
