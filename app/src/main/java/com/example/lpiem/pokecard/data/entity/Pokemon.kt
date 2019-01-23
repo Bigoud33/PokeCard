@@ -1,3 +1,3 @@
 package com.example.lpiem.pokecard.data.entity
 
-data class Pokemon(val species: Species, val sprites: Sprites)
+data class Pokemon(val name: String, val url: String)

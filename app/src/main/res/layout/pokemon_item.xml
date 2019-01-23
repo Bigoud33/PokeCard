@@ -14,12 +14,15 @@
 
         <androidx.appcompat.widget.AppCompatImageView android:layout_width="wrap_content"
                                                       android:layout_height="wrap_content"
-                                                      android:src="@drawable/ic_fights"/>
+                                                      android:src="@drawable/ic_fights"
+                                                      android:id="@+id/pokemonPicture"/>
 
-        <androidx.appcompat.widget.AppCompatTextView android:layout_width="wrap_content"
-                                                     android:layout_height="wrap_content"
-                                                     android:text="Pokemon"
-                                                     android:layout_gravity="center"/>
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pokemonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pokemon"
+                android:layout_gravity="center"/>
 
     </LinearLayout>
 

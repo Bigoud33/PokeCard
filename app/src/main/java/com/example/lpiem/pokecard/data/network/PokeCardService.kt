@@ -1,12 +1,12 @@
 package com.example.lpiem.pokecard.data.network
 
-import com.example.lpiem.pokecard.data.entity.Pokemon
+import com.example.lpiem.pokecard.data.entity.Pokemons
 import io.reactivex.Single
 import retrofit2.http.GET
 
 interface PokeCardService {
 
-    @GET("api/v2/pokemon/{id}")
+    @GET("pokemon/")
     fun getPokemons():
-            Single<List<Pokemon>>
+            Single<Pokemons>
 }
