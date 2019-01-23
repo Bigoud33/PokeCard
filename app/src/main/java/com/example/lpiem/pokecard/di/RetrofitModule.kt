@@ -48,6 +48,6 @@ internal class RetrofitModule {
             .build()
 
     @Provides
-fun provideService(retrofit: Retrofit): PokeCardService =
-            retrofit.create(PokeCardService::class.java)
+    fun provideService(retrofit: Retrofit): PokeCardService =
+        retrofit.create(PokeCardService::class.java)
 }
