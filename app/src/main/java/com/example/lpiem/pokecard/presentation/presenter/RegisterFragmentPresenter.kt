@@ -3,6 +3,4 @@ package com.example.lpiem.pokecard.presentation.presenter
 import com.example.lpiem.pokecard.base.BasePresenter
 import javax.inject.Inject
 
-class RegisterFragmentPresenter
-@Inject
-constructor() : BasePresenter<RegisterView>()
+class RegisterFragmentPresenter : BasePresenter<RegisterView>()

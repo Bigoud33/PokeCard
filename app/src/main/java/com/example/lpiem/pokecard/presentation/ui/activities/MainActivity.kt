@@ -4,11 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.lpiem.pokecard.R
-import com.example.lpiem.pokecard.presentation.ui.fragments.MainFragment
+import com.example.lpiem.pokecard.presentation.ui.fragments.PokedexFragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import kotlinx.android.synthetic.main.activity_container_with_bottomnavigation.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
@@ -23,11 +24,54 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_container_with_bottomnavigation)
         //this.configureBottomView();
+        var activeFragment = R.id.action_pokedex
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.activityContainer, MainFragment())
+                .replace(R.id.activityContainer, PokedexFragment())
                 .commit()
+        }
+        activity_main_bottom_navigation.setOnNavigationItemSelectedListener {
+            if (it.itemId != activeFragment) {
+                when (it.itemId) {
+                    R.id.action_pokedex -> {
+                        supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.activityContainer, PokedexFragment())
+                            .commit()
+                        activeFragment = R.id.action_pokedex
+                    }
+                    R.id.action_pokeshop -> {
+                        supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.activityContainer, PokeshopFragment())
+                            .commit()
+                        activeFragment = R.id.action_pokeshop
+                    }
+                    R.id.action_fights -> {
+                        supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.activityContainer, FightFragment())
+                            .commit()
+                        activeFragment = R.id.action_fights
+                    }
+                    R.id.action_friends -> {
+                        supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.activityContainer, FriendsFragment())
+                            .commit()
+                        activeFragment = R.id.action_friends
+                    }
+                    R.id.action_profile -> {
+                        supportFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.activityContainer, ProfileFragment())
+                            .commit()
+                        activeFragment = R.id.action_profile
+                    }
+                }
+            }
+            true
         }
     }
 

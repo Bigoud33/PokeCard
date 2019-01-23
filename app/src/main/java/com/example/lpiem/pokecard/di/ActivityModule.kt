@@ -4,7 +4,6 @@ import com.example.lpiem.pokecard.presentation.ui.activities.LoginActivity
 import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
 import com.example.lpiem.pokecard.presentation.ui.activities.RegisterActivity
 import com.example.lpiem.pokecard.presentation.ui.fragments.LoginFragment
-import com.example.lpiem.pokecard.presentation.ui.fragments.MainFragment
 import com.example.lpiem.pokecard.presentation.ui.fragments.RegisterFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
