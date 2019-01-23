@@ -11,6 +11,7 @@ import com.example.lpiem.pokecard.presentation.presenter.RegisterFragmentPresent
 import com.example.lpiem.pokecard.presentation.presenter.RegisterView
 import com.example.lpiem.pokecard.presentation.ui.activities.LoginActivity
 import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
+import com.example.lpiem.pokecard.utils.EmailValidator
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_register.*
 import java.util.regex.Pattern
@@ -43,10 +44,10 @@ class RegisterFragment : BaseFragment<RegisterFragmentPresenter>(), RegisterView
 
     private fun register(){
         if(emailField.text!!.isEmpty() || passwordField.text!!.isEmpty() || pseudoField.text!!.isEmpty()) {
-            Toast.makeText(context, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.fillAllFields), Toast.LENGTH_SHORT).show()
         }
-        else if(!(emailField.text!!.isEmpty()) && !(isEmailValid(emailField.text.toString()))) {
-            Toast.makeText(context,"Veuillez entrer un email valide", Toast.LENGTH_SHORT).show()
+        else if(!(emailField.text!!.isEmpty()) && !(EmailValidator().isEmailValid(emailField.text.toString()))) {
+            Toast.makeText(context,getString(R.string.emailNotValid), Toast.LENGTH_SHORT).show()
         }
         else {
             //MUST Check if email not already exists + and pseudo not already exists
@@ -62,14 +63,4 @@ class RegisterFragment : BaseFragment<RegisterFragmentPresenter>(), RegisterView
 
     }
 
-    fun isEmailValid(email: String): Boolean {
-        return Pattern.compile(
-            "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@"
-                    + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                    + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
-                    + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                    + "[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|"
-                    + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$"
-        ).matcher(email).matches()
-    }
 }

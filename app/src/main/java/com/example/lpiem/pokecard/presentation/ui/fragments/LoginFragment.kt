@@ -13,6 +13,7 @@ import com.example.lpiem.pokecard.presentation.presenter.LoginFragmentPresenter
 import com.example.lpiem.pokecard.presentation.presenter.LoginView
 import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
 import com.example.lpiem.pokecard.presentation.ui.activities.RegisterActivity
+import com.example.lpiem.pokecard.utils.EmailValidator
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -61,15 +62,15 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
         // Callback registration
         login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
-                Toast.makeText(context, "Connected to your Facebook account with success", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.facebookConnectionOK), Toast.LENGTH_SHORT).show()
             }
 
             override fun onCancel() {
-                Toast.makeText(context, "Connection canceled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.facebookConnectionCanceled), Toast.LENGTH_SHORT).show()
             }
 
             override fun onError(exception: FacebookException) {
-                Toast.makeText(context, "Connection to your Facebook account failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.facebookConnectionNOK), Toast.LENGTH_SHORT).show()
                 Toast.makeText(context,exception.message, Toast.LENGTH_SHORT).show()
             }
         })
@@ -126,12 +127,13 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
             val account = completedTask.getResult(ApiException::class.java)
 
             // Signed in successfully, show authenticated UI.
-            Toast.makeText(context, "Connected to your google account with success", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.googleConnectionOK), Toast.LENGTH_SHORT).show()
 
             updateUI(account)
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         } catch (e: ApiException) {
+            Toast.makeText(context, getString(R.string.googleConnectionNOK), Toast.LENGTH_SHORT).show()
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.d(TAG, "signInResult:failed code=" + e.statusCode)
@@ -161,11 +163,11 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
     private fun login(){
         // emailfield or password field is empty
         if(email.text!!.isEmpty() || password.text!!.isEmpty() ) {
-            Toast.makeText(context, "Email or password is missing", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.emailOrPasswordMissing), Toast.LENGTH_SHORT).show()
         }
         // the email is not valid
-        else if (!(email.text!!.isEmpty()) && !(isEmailValid(email.text.toString()))){
-            Toast.makeText(context,"Please enter a valid email address", Toast.LENGTH_SHORT).show()
+        else if (!(email.text!!.isEmpty()) && !(EmailValidator().isEmailValid(email.text.toString()))){
+            Toast.makeText(context,getString(R.string.emailNotValid), Toast.LENGTH_SHORT).show()
         } else {
             // MUST check if email and password exists and are good
             val intent = Intent(context, MainActivity::class.java)
@@ -173,14 +175,4 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
         }
     }
 
-    fun isEmailValid(email: String): Boolean {
-        return Pattern.compile(
-            "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@"
-                    + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                    + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
-                    + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                    + "[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|"
-                    + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$"
-        ).matcher(email).matches()
-    }
 }
