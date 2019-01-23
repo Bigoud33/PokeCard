@@ -12,5 +12,14 @@
     <string name="passwordField">Mot de passe</string>
     <string name="pseudoField">Pseudo</string>
     <string name="alreadyHaveAccount">J\'ai déjà un compte</string>
-    <string name="registerMessage2">Inscrivez-vous ici.\nSi vous avez déjà un compte, cliquez sur le bouton "J'ai déjà un compte"</string>
+    <string name="registerMessage2">Inscrivez-vous ici.\nSi vous avez déjà un compte, cliquez sur le bouton "J\'ai déjà un compte"</string>
+    <string name="facebookConnectionOK">Vous êtes connectés à PokeCard avec Facebook</string>
+    <string name="facebookConnectionNOK">La connexion à Facebook a échouée</string>
+    <string name="facebookConnectionCanceled">La connexion à Facebook a été annulée</string>
+    <string name="googleConnectionOK">Vous êtes connectés à PokeCard avec Google</string>
+    <string name="googleConnectionNOK">La connexion à Google a échouée</string>
+    <string name="googleConnectionCanceled">La connexion à Google a été annulée</string>
+    <string name="emailOrPasswordMissing">L\'email ou le mot de passe est manquant</string>
+    <string name="emailNotValid">Le format de l\'email n\'est pas valide</string>
+    <string name="fillAllFields">Veuillez remplir tous les champs</string>
 </resources>
