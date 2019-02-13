@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import com.example.lpiem.pokecard.Login
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
 import com.example.lpiem.pokecard.presentation.presenter.RegisterFragmentPresenter
