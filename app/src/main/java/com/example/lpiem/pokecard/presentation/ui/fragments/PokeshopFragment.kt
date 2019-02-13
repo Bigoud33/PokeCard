@@ -2,6 +2,7 @@ package com.example.lpiem.pokecard.presentation.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
+import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
 import com.example.lpiem.pokecard.presentation.presenter.PokeshopFragmentPresenter
 import com.example.lpiem.pokecard.presentation.presenter.PokeshopView

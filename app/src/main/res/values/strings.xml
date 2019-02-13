@@ -19,4 +19,11 @@
     <string name="fights">Combattre</string>
     <string name="pokeshop">Pokéshop</string>
     <string name="myPokemons">Mes Pokémons</string>
+    <string name="sell">Vendre</string>
+    <string name="buy">Acheter</string>
+    <string name="numberOfCoins">Vous avez %s pièces</string>
+    <string name="buyContentDescription">buyIcon</string>
+    <string name="sellContentDescription">sellIcon</string>
+    <string name="pokeshopText">Bienvenue dans le Pokéshop. Vous pouvez acheter ou vendre des pokémons avec des Poképièces. Vous pouvez également acheter des Poképièces.  </string>
+
 </resources>
