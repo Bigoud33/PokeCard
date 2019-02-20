@@ -4,18 +4,18 @@ import android.content.Context
 import android.os.Bundle
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
+import com.example.lpiem.pokecard.presentation.presenter.PokeshopBuyFragmentPresenter
+import com.example.lpiem.pokecard.presentation.presenter.PokeshopBuyView
 import com.example.lpiem.pokecard.presentation.presenter.PokeshopFragmentPresenter
-import com.example.lpiem.pokecard.presentation.presenter.PokeshopView
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_pokeshop.*
 import javax.inject.Inject
 
-class PokeshopFragment : BaseFragment<PokeshopFragmentPresenter>(), PokeshopView {
-
-    override val layoutId: Int = R.layout.fragment_pokeshop
+class PokeshopBuyFragment : BaseFragment<PokeshopBuyFragmentPresenter>(), PokeshopBuyView {
+    override val layoutId: Int = R.layout.fragment_pokeshop_buy
 
     @Inject
-    override lateinit var presenter: PokeshopFragmentPresenter
+    override lateinit var presenter: PokeshopBuyFragmentPresenter
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -26,15 +26,7 @@ class PokeshopFragment : BaseFragment<PokeshopFragmentPresenter>(), PokeshopView
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
 
-        buyButton.setOnClickListener {
-            showBuyFragment()
-        }
     }
 
-    fun showBuyFragment() {
-        activity!!.supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.activityContainer, PokeshopBuyFragment())
-            .commit()
-    }
+
 }

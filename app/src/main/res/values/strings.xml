@@ -21,7 +21,10 @@
     <string name="myPokemons">Mes Pokémons</string>
     <string name="sell">Vendre</string>
     <string name="buy">Acheter</string>
-    <string name="numberOfCoins">Vous avez %s pièces</string>
+    <string name="numberOfCoins">X</string>
+    <string name="numberOfDiamonds">N</string>
+    <string name="diamondIconDesc">Icon Diamond Description</string>
+    <string name="pokedollarIconDesc">Icon Pokedollar Description</string>
     <string name="buyContentDescription">buyIcon</string>
     <string name="sellContentDescription">sellIcon</string>
     <string name="pokeshopText">Bienvenue dans le Pokéshop. Vous pouvez acheter ou vendre des pokémons avec des Poképièces. Vous pouvez également acheter des Poképièces.  </string>
