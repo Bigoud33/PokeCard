@@ -6,9 +6,7 @@ import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
 import com.example.lpiem.pokecard.presentation.presenter.PokeshopBuyFragmentPresenter
 import com.example.lpiem.pokecard.presentation.presenter.PokeshopBuyView
-import com.example.lpiem.pokecard.presentation.presenter.PokeshopFragmentPresenter
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_pokeshop.*
 import javax.inject.Inject
 
 class PokeshopBuyFragment : BaseFragment<PokeshopBuyFragmentPresenter>(), PokeshopBuyView {

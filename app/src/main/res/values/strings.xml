@@ -28,5 +28,8 @@
     <string name="buyContentDescription">buyIcon</string>
     <string name="sellContentDescription">sellIcon</string>
     <string name="pokeshopText">Bienvenue dans le Pokéshop. Vous pouvez acheter ou vendre des pokémons avec des Poképièces. Vous pouvez également acheter des Poképièces.  </string>
+    <string name="pokemonName">Nom du Pokémon</string>
+    <string name="pokemonPrice">Prix du pokémon</string>
+    <string name="pokemonSpriteDesc">Sprite du pokémon</string>
 
 </resources>
