@@ -22,4 +22,10 @@
     <string name="emailOrPasswordMissing">L\'email ou le mot de passe est manquant</string>
     <string name="emailNotValid">Le format de l\'email n\'est pas valide</string>
     <string name="fillAllFields">Veuillez remplir tous les champs</string>
+    <string name="myProfile">Mon Profil</string>
+    <string name="myPokedex">Mon Pokédex</string>
+    <string name="myFriends">Mes amis</string>
+    <string name="fights">Combattre</string>
+    <string name="pokeshop">Pokéshop</string>
+    <string name="myPokemons">Mes Pokémons</string>
 </resources>

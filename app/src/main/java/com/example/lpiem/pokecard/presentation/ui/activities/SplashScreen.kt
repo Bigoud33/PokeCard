@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.example.lpiem.pokecard.Login
 import com.example.lpiem.pokecard.R
 
 private const val SPLASH_TIME_OUT: Long = 3000

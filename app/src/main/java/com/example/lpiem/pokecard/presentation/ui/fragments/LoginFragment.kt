@@ -172,6 +172,7 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
             // MUST check if email and password exists and are good
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
+            activity!!.finish()
         }
     }
 
