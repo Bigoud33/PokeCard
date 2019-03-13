@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
                             .commit()
                         activeFragment = R.id.action_pokeshop
                     }
-                    R.id.action_fights -> {
+                    /*R.id.action_fights -> {
                         supportFragmentManager
                             .beginTransaction()
                             .replace(R.id.activityContainer, FightFragment())
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
                             .replace(R.id.activityContainer, ProfileFragment())
                             .commit()
                         activeFragment = R.id.action_profile
-                    }
+                    }*/
                 }
             }
             true
