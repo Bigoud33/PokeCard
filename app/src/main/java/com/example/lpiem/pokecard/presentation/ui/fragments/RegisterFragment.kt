@@ -3,9 +3,12 @@ package com.example.lpiem.pokecard.presentation.ui.fragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
+import com.example.lpiem.pokecard.data.entity.SignupUser
 import com.example.lpiem.pokecard.presentation.presenter.RegisterFragmentPresenter
 import com.example.lpiem.pokecard.presentation.presenter.RegisterView
 import com.example.lpiem.pokecard.presentation.ui.activities.LoginActivity
@@ -13,11 +16,19 @@ import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
 import com.example.lpiem.pokecard.utils.EmailValidator
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_register.*
-import java.util.regex.Pattern
 import javax.inject.Inject
 
+
 class RegisterFragment : BaseFragment<RegisterFragmentPresenter>(), RegisterView {
-    override val layoutId: Int = R.layout.fragment_register
+    override fun displayLoader() {
+        //
+    }
+
+    override fun hideLoader() {
+        //
+    }
+
+    override val layoutId: Int = com.example.lpiem.pokecard.R.layout.fragment_register
 
     @Inject
     override lateinit var presenter: RegisterFragmentPresenter
@@ -30,6 +41,13 @@ class RegisterFragment : BaseFragment<RegisterFragmentPresenter>(), RegisterView
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
+        passwordField.setOnEditorActionListener { _, actionId, event ->
+            if (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER || actionId == EditorInfo.IME_ACTION_DONE) {
+                //do what you want on the press of 'done'
+                registerButton.performClick()
+            }
+            false
+        }
 
         registerButton.setOnClickListener {
             register()
@@ -49,17 +67,25 @@ class RegisterFragment : BaseFragment<RegisterFragmentPresenter>(), RegisterView
             Toast.makeText(context,getString(R.string.emailNotValid), Toast.LENGTH_SHORT).show()
         }
         else {
-            //MUST Check if email not already exists + and pseudo not already exists
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
+            val signupUser = SignupUser(emailField.text.toString(), passwordField.text.toString(), pseudoField.text.toString())
+            presenter.signup(signupUser)
         }
     }
 
     private fun goToLoginActivity(){
         val intent = Intent(context, LoginActivity::class.java)
         startActivity(intent)
-        activity!!.finish()
+        activity?.finish()
+    }
 
+    override fun showError(errorMessage: String) {
+        Toast.makeText(context,errorMessage,Toast.LENGTH_SHORT).show()
+    }
+
+    override fun goToMain() {
+        val intent = Intent(context, MainActivity::class.java)
+        startActivity(intent)
+        activity?.finish()
     }
 
 }

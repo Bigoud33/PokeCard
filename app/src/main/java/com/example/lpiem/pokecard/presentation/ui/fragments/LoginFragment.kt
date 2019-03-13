@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
+import com.example.lpiem.pokecard.data.entity.SigninUser
 import com.example.lpiem.pokecard.presentation.presenter.LoginFragmentPresenter
 import com.example.lpiem.pokecard.presentation.presenter.LoginView
 import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
@@ -29,7 +32,25 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
+
 class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
+    override fun displayLoader() {
+        //
+    }
+
+    override fun hideLoader() {
+        //
+    }
+
+    override fun showError(errorMessage: String) {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun goToMain() {
+        val intent = Intent(context, MainActivity::class.java)
+        startActivity(intent)
+        activity?.finish()
+    }
 
     private lateinit var callbackManager: CallbackManager
     private lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -51,8 +72,13 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
         callbackManager = CallbackManager.Factory.create()
-
-
+        password.setOnEditorActionListener { _, actionId, event ->
+            if (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER || actionId == EditorInfo.IME_ACTION_DONE) {
+                //do what you want on the press of 'done'
+                loginEmail_button.performClick()
+            }
+            false
+        }
 
 
         // Facebook
@@ -133,6 +159,7 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
             updateUI(account)
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
+            activity?.finish()
         } catch (e: ApiException) {
             Toast.makeText(context, getString(R.string.googleConnectionNOK), Toast.LENGTH_SHORT).show()
             // The ApiException status code indicates the detailed failure reason.
@@ -169,10 +196,8 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
         else if (!(email.text!!.isEmpty()) && !(EmailValidator().isEmailValid(email.text.toString()))){
             Toast.makeText(context,getString(R.string.emailNotValid), Toast.LENGTH_SHORT).show()
         } else {
-            // MUST check if email and password exists and are good
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
-            activity!!.finish()
+            val signinUser = SigninUser(email.text.toString(), password.text.toString())
+            presenter.signin(signinUser)
         }
     }
 

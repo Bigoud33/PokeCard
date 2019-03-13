@@ -21,7 +21,10 @@
             android:id="@+id/loginGoogle_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteY="587dp" tools:layout_editor_absoluteX="142dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/loginFacebook_button"/>
 
     <com.google.android.material.textfield.TextInputLayout android:layout_width="wrap_content"
                                                            android:layout_height="wrap_content"
@@ -70,7 +73,7 @@
                 android:inputType="textPassword"
                 app:layout_constraintBottom_toTopOf="@+id/loginEmail_button"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" android:imeOptions="actionDone"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
