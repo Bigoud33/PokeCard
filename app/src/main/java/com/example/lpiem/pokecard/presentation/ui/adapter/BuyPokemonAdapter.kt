@@ -9,12 +9,13 @@ import com.example.lpiem.pokecard.R
 import kotlinx.android.synthetic.main.item_recycler_view_shop_buy.view.*
 import java.util.ArrayList
 
-class BuyPokemonAdapter(val data : /*Temp*/ ArrayList<String>/*ArrayList<Pokemon>*/, val context: Context) : RecyclerView.Adapter<BuyPokemonAdapter.ViewHolder>()  {
+class BuyPokemonAdapter(val data : /*Temp*/ ArrayList<String>/*ArrayList<Pokemon>*/, val context: Context?) : RecyclerView.Adapter<BuyPokemonAdapter.ViewHolder>()  {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //holder?.tvNamePokemon.text =  data.name
         //holder?.tvPokemonPrice.text = data.price
         //holder?.ivPokemonSprite.
+        holder?.tvNamePokemon.text = data[position]
 
     }
 
@@ -30,9 +31,9 @@ class BuyPokemonAdapter(val data : /*Temp*/ ArrayList<String>/*ArrayList<Pokemon
 
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         // Holds the TextView that will add each animal to
-        val tvNamePokemon = view.pokemonName
-        val tvPokemonPrice = view.pokemonPrice
-        val ivPokemonSprite = view.pokemonSprite
+        var tvNamePokemon = view.pokemonName
+        //var tvPokemonPrice = view.pokemonPrice
+        //var ivPokemonSprite = view.pokemonSprite
     }
 
 }

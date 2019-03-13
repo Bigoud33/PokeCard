@@ -1,37 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
-    <LinearLayout
-            android:orientation="horizontal"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/llTest">
+            android:layout_height="wrap_content"
+            android:id="@+id/llTest">
         <ImageView
                 android:id="@+id/pokemonSprite"
                 android:contentDescription="@string/pokemonSpriteDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@mipmap/ic_launcher"
-                android:layout_weight="1"/>
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/pokemonName"/>
         <TextView
                 android:id="@+id/pokemonName"
                 android:text="@string/pokemonName"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:layout_weight="1"/>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/pokemonPrice"
+                app:layout_constraintStart_toEndOf="@+id/pokemonSprite"
+                app:layout_constraintEnd_toStartOf="@+id/pokemonPrice"/>
         <TextView
                 android:id="@+id/pokemonPrice"
                 android:text="@string/pokemonPrice"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:layout_weight="1"/>
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/pokedollarIcon" android:layout_marginTop="2dp"
+                app:layout_constraintStart_toEndOf="@+id/pokemonName"
+                app:layout_constraintEnd_toStartOf="@+id/pokedollarIcon"/>
         <ImageView
                 android:id="@+id/pokedollarIcon"
                 android:contentDescription="@string/pokedollarIconDesc"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" app:srcCompat="@drawable/ic_pokedollar"
-                android:layout_weight="1"/>
-    </LinearLayout>
+                app:layout_constraintStart_toEndOf="@+id/pokemonPrice" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
