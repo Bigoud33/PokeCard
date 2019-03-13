@@ -26,13 +26,7 @@ class PokedexFragmentPresenter
 
     fun getPokemons() {
         model.getPokemons()
-            .flatMap {
-                model.getPokemons()
 
-
-
-                return@flatMap Single.just(Pokemons(emptyList<Pokemon>()))
-            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
