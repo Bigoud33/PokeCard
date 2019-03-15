@@ -11,7 +11,7 @@ import retrofit2.http.POST
 
 interface PokeCardService {
 
-    @GET("pokemon/")
+    @GET("pokemons/")
     fun getPokemons():
             Single<Pokemons>
 

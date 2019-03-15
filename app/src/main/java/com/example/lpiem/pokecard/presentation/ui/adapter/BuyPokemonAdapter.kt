@@ -1,21 +1,27 @@
 package com.example.lpiem.pokecard.presentation.ui.adapter
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.lpiem.pokecard.R
+import com.example.lpiem.pokecard.data.entity.Pokemons
 import kotlinx.android.synthetic.main.item_recycler_view_shop_buy.view.*
+import java.net.URL
 import java.util.ArrayList
 
-class BuyPokemonAdapter(val data : /*Temp*/ ArrayList<String>/*ArrayList<Pokemon>*/, val context: Context?) : RecyclerView.Adapter<BuyPokemonAdapter.ViewHolder>()  {
+class BuyPokemonAdapter(val pokemons : Pokemons/*Temp ArrayList<String> */, val context: Context?) : RecyclerView.Adapter<BuyPokemonAdapter.ViewHolder>()  {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //holder?.tvNamePokemon.text =  data.name
-        //holder?.tvPokemonPrice.text = data.price
-        //holder?.ivPokemonSprite.
-        holder?.tvNamePokemon.text = data[position]
+        holder?.tvNamePokemon.text = pokemons.results[position].name
+        holder?.tvPokemonPrice.text = pokemons.results[position].price.toString()
+        val spriteURL = URL(pokemons.results[position].sprite.front_shiny)
+        Glide.with(context)
+            .load(spriteURL)
+            .into(holder?.ivPokemonSprite)
 
     }
 
@@ -26,14 +32,13 @@ class BuyPokemonAdapter(val data : /*Temp*/ ArrayList<String>/*ArrayList<Pokemon
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return pokemons.results.size
     }
 
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-        // Holds the TextView that will add each animal to
         var tvNamePokemon = view.pokemonName
-        //var tvPokemonPrice = view.pokemonPrice
-        //var ivPokemonSprite = view.pokemonSprite
+        var tvPokemonPrice = view.pokemonPrice
+        var ivPokemonSprite = view.pokemonSprite
     }
 
 }
