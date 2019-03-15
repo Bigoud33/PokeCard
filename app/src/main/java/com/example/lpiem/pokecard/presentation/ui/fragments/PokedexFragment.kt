@@ -53,13 +53,13 @@ class PokedexFragment : BaseFragment<PokedexFragmentPresenter>(), PokedexView {
     }
 
     override fun showPokemons(pokemonsList: Pokemons) {
-        /*val pokemons = ArrayList<Pokemon>()
+        val pokemons = ArrayList<Pokemon>()
         val adapter = PokemonAdapter(pokemons, presenter)
         recyclerViewPokedex.adapter = adapter
-        for (pokemon in pokemonsList.results) {
+        for (pokemon in pokemonsList.pokemons) {
             pokemons.add(pokemon)
         }
-        adapter.notifyDataSetChanged()*/
+        adapter.notifyDataSetChanged()
     }
 
     override fun showError(throwable: Throwable) {

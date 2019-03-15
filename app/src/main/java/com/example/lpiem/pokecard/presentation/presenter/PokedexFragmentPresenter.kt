@@ -28,12 +28,12 @@ class PokedexFragmentPresenter
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onError = {
-                    //view.hideLoader()
+                    view.hideLoader()
                     view.showError(it)
                 },
                 onSuccess = {
-                    //view.hideLoader()
-//                    view.showPokemons(it)
+                    view.hideLoader()
+                    view.showPokemons(it)
                 }
             )
     }
