@@ -2,6 +2,7 @@ package com.example.lpiem.pokecard.presentation.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lpiem.pokecard.R
@@ -35,11 +36,12 @@ class PokeshopBuyFragment : BaseFragment<PokeshopBuyFragmentPresenter>(), Pokesh
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
-        buyList.layoutManager = LinearLayoutManager(context)
+
 
         // You can use GridLayoutManager if you want multiple columns. Enter the number of columns as a parameter.
 //        rv_animal_list.layoutManager = GridLayoutManager(this, 2)
         presenter.getPokemons()
+
     }
 
     override fun hideLoader() {
@@ -51,6 +53,8 @@ class PokeshopBuyFragment : BaseFragment<PokeshopBuyFragmentPresenter>(), Pokesh
     }
 
     override fun showPokemons(pokemons: Pokemons) {
+        Log.d("Datas : ", pokemons.toString())
+        buyList.layoutManager = LinearLayoutManager(context)
         buyList.adapter = BuyPokemonAdapter(pokemons, context)
     }
 

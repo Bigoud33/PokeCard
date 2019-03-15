@@ -16,9 +16,9 @@ import java.util.ArrayList
 class BuyPokemonAdapter(val pokemons : Pokemons/*Temp ArrayList<String> */, val context: Context?) : RecyclerView.Adapter<BuyPokemonAdapter.ViewHolder>()  {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder?.tvNamePokemon.text = pokemons.results[position].name
-        holder?.tvPokemonPrice.text = pokemons.results[position].price.toString()
-        val spriteURL = URL(pokemons.results[position].sprite.front_shiny)
+        holder?.tvNamePokemon.text = pokemons.pokemons[position].name
+        holder?.tvPokemonPrice.text = pokemons.pokemons[position].price.toString()
+        val spriteURL = URL(pokemons.pokemons[position].sprite)
         Glide.with(context)
             .load(spriteURL)
             .into(holder?.ivPokemonSprite)
@@ -32,7 +32,7 @@ class BuyPokemonAdapter(val pokemons : Pokemons/*Temp ArrayList<String> */, val 
     }
 
     override fun getItemCount(): Int {
-        return pokemons.results.size
+        return pokemons.pokemons.size
     }
 
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
