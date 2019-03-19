@@ -1,7 +1,6 @@
 package com.example.lpiem.pokecard.presentation.ui.adapter
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.data.entity.Pokemons
 import kotlinx.android.synthetic.main.item_recycler_view_shop_buy.view.*
 import java.net.URL
-import java.util.ArrayList
 
 class BuyPokemonAdapter(val pokemons : Pokemons/*Temp ArrayList<String> */, val context: Context?) : RecyclerView.Adapter<BuyPokemonAdapter.ViewHolder>()  {
 
