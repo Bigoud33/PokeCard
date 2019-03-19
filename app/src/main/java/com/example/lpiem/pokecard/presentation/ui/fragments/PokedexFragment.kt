@@ -16,10 +16,12 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_pokedex.*
 import java.util.ArrayList
 import javax.inject.Inject
+import io.reactivex.disposables.CompositeDisposable
 
 class PokedexFragment : BaseFragment<PokedexFragmentPresenter>(), PokedexView {
 
     override val layoutId: Int = R.layout.fragment_pokedex
+    private val compositeDisposable = CompositeDisposable()
 
     @Inject
     override lateinit var presenter: PokedexFragmentPresenter
@@ -36,7 +38,12 @@ class PokedexFragment : BaseFragment<PokedexFragmentPresenter>(), PokedexView {
         val pokemons = ArrayList<Pokemon>()
         val adapter = PokemonAdapter(pokemons, presenter)
         recyclerViewPokedex.adapter = adapter
-        presenter.start()
+        presenter.start(compositeDisposable)
+    }
+
+    override fun onDestroy() {
+        compositeDisposable.clear()
+        super.onDestroy()
     }
 
     override fun displayLoader() {

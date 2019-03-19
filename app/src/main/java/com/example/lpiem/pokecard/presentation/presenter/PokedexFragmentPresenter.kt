@@ -8,6 +8,8 @@ import com.example.lpiem.pokecard.domain.MainPokemonModel
 import com.example.lpiem.pokecard.presentation.ui.adapter.PokemonAdapter
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.internal.disposables.ArrayCompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -19,14 +21,14 @@ class PokedexFragmentPresenter
         view.goToDetail(position)
     }
 
-    fun start() {
+    fun start(compositeDisposable: CompositeDisposable) {
         view.displayLoader()
-        getPokemons()
+        getPokemons(compositeDisposable)
     }
 
-    fun getPokemons() {
+    fun getPokemons(compositeDisposable: CompositeDisposable) {
+        compositeDisposable.add(
         model.getPokemons()
-
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
@@ -39,5 +41,6 @@ class PokedexFragmentPresenter
                     view.showPokemons(it)
                 }
             )
+        )
     }
 }
