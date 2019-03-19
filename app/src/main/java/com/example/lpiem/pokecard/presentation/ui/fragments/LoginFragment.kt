@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
 import com.example.lpiem.pokecard.data.entity.SigninUser
+import com.example.lpiem.pokecard.data.entity.Token
 import com.example.lpiem.pokecard.presentation.presenter.LoginFragmentPresenter
 import com.example.lpiem.pokecard.presentation.presenter.LoginView
 import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
@@ -50,6 +51,16 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
         val intent = Intent(context, MainActivity::class.java)
         startActivity(intent)
         activity?.finish()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val sharedPreferences = context?.getSharedPreferences("pokecard", Context.MODE_PRIVATE)
+        val userToken = sharedPreferences?.getString("user-token", null)
+        if (userToken != null ) {
+            val signinToken = Token(userToken)
+            presenter.signinToken(signinToken)
+        }
     }
 
     private lateinit var callbackManager: CallbackManager
