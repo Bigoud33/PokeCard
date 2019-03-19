@@ -99,7 +99,7 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
             override fun onSuccess(loginResult: LoginResult) {
                 GraphRequest.newMeRequest(
                     loginResult.accessToken
-                ) { jsonObject, response ->
+                ) { jsonObject, _ ->
                     val email = jsonObject.getString("email")
                     val signinUser = SigninUser(email, "")
                     presenter.signinFacebookGoogle(signinUser)
