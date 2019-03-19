@@ -67,4 +67,8 @@ constructor(private val service: PokeCardService, private val context: Context) 
                 }
             )
     }
+
+    fun signinFacebookGoogle(signinUser: SigninUser) {
+
+    }
 }
