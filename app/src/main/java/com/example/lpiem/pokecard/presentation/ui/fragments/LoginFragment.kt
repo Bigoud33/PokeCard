@@ -97,13 +97,8 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
         // Callback registration
         loginFacebook_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
-                GraphRequest.newMeRequest(
-                    loginResult.accessToken
-                ) { jsonObject, response ->
-                    val email = jsonObject.getString("email")
-                    val signinUser = SigninUser(email, "")
-                    presenter.signinFacebookGoogle(signinUser)
-                }
+                Log.d("onSucess","onSucess")
+
 
                 Toast.makeText(context, getString(R.string.facebookConnectionOK), Toast.LENGTH_SHORT).show()
             }
@@ -159,8 +154,17 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
         } else {
             callbackManager.onActivityResult(requestCode, resultCode, data)
             super.onActivityResult(requestCode, resultCode, data)
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
+            GraphRequest.newMeRequest(
+                AccessToken.getCurrentAccessToken()
+            ) { jsonObject, response ->
+                Log.d("jsonObject",jsonObject.toString())
+                val email = jsonObject.getString("email")
+                Log.d("email",email)
+                val signinUser = SigninUser(email, "")
+                presenter.signinFacebookGoogle(signinUser)
+            }
+            /*val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)*/
         }
 
     }
