@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class PokedexFragmentPresenter
-@Inject constructor(private val service: PokeCardService): BasePresenter<PokedexView>(), PokemonAdapter.ClickOnRecycler {
+@Inject constructor(private val service: PokeCardService, private val context: Context): BasePresenter<PokedexView>(), PokemonAdapter.ClickOnRecycler {
 
     override fun itemClicked(position: Int, context: Context) {
         view.goToDetail(position)
@@ -18,11 +18,13 @@ class PokedexFragmentPresenter
 
     fun start() {
         view.displayLoader()
-        getPokemons()
+        val sharedPreferences = context.getSharedPreferences("pokecard",Context.MODE_PRIVATE)
+        val userId = sharedPreferences?.getString("user-id", "null")
+        getPokemonsForUser(userId!!)
     }
 
-    fun getPokemons() {
-        service.getPokemons()
+    fun getPokemonsForUser(userId : String) {
+        service.getPokemonsForUser(userId)
 
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

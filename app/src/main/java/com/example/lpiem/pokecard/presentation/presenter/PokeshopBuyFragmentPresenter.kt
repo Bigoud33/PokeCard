@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class PokeshopBuyFragmentPresenter
 @Inject
-constructor(private val service: PokeCardService, private val context: Context) : BasePresenter<PokeshopBuyView>() {
+constructor(private val service: PokeCardService) : BasePresenter<PokeshopBuyView>() {
     fun getPokemons(){
         service.getPokemons()
             .subscribeOn(Schedulers.io())

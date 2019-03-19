@@ -2,6 +2,7 @@ package com.example.lpiem.pokecard.presentation.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,14 +34,14 @@ class PokedexFragment : BaseFragment<PokedexFragmentPresenter>(), PokedexView {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
         recyclerViewPokedex.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        val pokemons = ArrayList<Pokemon>()
-        val adapter = PokemonAdapter(pokemons, presenter)
-        recyclerViewPokedex.adapter = adapter
+        /*val pokemons = ArrayList<Pokemon>()
+        val adapter = PokemonAdapter(pokemons, presenter)*/
+        //recyclerViewPokedex.adapter = adapter
         presenter.start()
         val sharedPreferences = context?.getSharedPreferences("pokecard",Context.MODE_PRIVATE)
         val test = sharedPreferences?.getString("user-token", "null")
         val test2 = sharedPreferences?.getString("user-id", "null")
-
+        Log.d("userid",test2)
         Toast.makeText(context, test + " and " + test2, Toast.LENGTH_LONG).show()
     }
 
@@ -53,13 +54,13 @@ class PokedexFragment : BaseFragment<PokedexFragmentPresenter>(), PokedexView {
     }
 
     override fun showPokemons(pokemonsList: Pokemons) {
-        val pokemons = ArrayList<Pokemon>()
-        val adapter = PokemonAdapter(pokemons, presenter)
+        //val pokemons = ArrayList<Pokemon>()
+        val adapter = PokemonAdapter(pokemonsList, presenter)
         recyclerViewPokedex.adapter = adapter
-        for (pokemon in pokemonsList.pokemons) {
+        /*for (pokemon in pokemonsList.pokemons) {
             pokemons.add(pokemon)
-        }
-        adapter.notifyDataSetChanged()
+        }*/
+        //adapter.notifyDataSetChanged()
     }
 
     override fun showError(throwable: Throwable) {

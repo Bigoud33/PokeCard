@@ -8,11 +8,16 @@ import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface PokeCardService {
 
     @GET("pokemons/")
     fun getPokemons():
+            Single<Pokemons>
+
+    @GET("user/{userId}/pokemons/")
+    fun getPokemonsForUser(@Path("userId") userId: String):
             Single<Pokemons>
 
     @POST("signup/")

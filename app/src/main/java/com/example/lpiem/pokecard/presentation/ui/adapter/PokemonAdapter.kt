@@ -6,16 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.widget.ImageViewCompat
-import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.data.entity.Pokemon
-import kotlinx.android.synthetic.main.activity_splash_screen.view.*
+import com.example.lpiem.pokecard.data.entity.Pokemons
 import kotlinx.android.synthetic.main.pokemon_item.view.*
-import java.util.ArrayList
+import java.net.URL
 
-class PokemonAdapter(private val pokemons: ArrayList<Pokemon>, private val listener: ClickOnRecycler) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
+class PokemonAdapter(private val pokemons: Pokemons, private val listener: ClickOnRecycler) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.pokemon_item, parent, false)
@@ -23,11 +22,11 @@ class PokemonAdapter(private val pokemons: ArrayList<Pokemon>, private val liste
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(pokemons[position], position)
+        holder.bindItems(pokemons.pokemons[position], position)
     }
 
     override fun getItemCount(): Int {
-        return pokemons.size
+        return pokemons.pokemons.size
     }
 
     class ViewHolder(view: View, private val listener: ClickOnRecycler) : RecyclerView.ViewHolder(view) {
@@ -38,6 +37,10 @@ class PokemonAdapter(private val pokemons: ArrayList<Pokemon>, private val liste
         fun bindItems(data: Pokemon, position: Int) {
 
             name.text = data.name
+            val spriteURL = URL(data.sprite)
+            Glide.with(context)
+                .load(spriteURL)
+                .into(picture)
 
 
 
