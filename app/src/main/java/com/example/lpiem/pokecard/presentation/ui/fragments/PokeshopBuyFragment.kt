@@ -13,10 +13,14 @@ import com.example.lpiem.pokecard.presentation.presenter.PokeshopBuyFragmentPres
 import com.example.lpiem.pokecard.presentation.presenter.PokeshopBuyView
 import com.example.lpiem.pokecard.presentation.ui.adapter.BuyPokemonAdapter
 import dagger.android.support.AndroidSupportInjection
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_pokeshop_buy.*
 import javax.inject.Inject
 
 class PokeshopBuyFragment : BaseFragment<PokeshopBuyFragmentPresenter>(), PokeshopBuyView {
+
+    private val compositeDisposable = CompositeDisposable()
+
     override fun displayLoader() {
         //
     }
@@ -40,8 +44,13 @@ class PokeshopBuyFragment : BaseFragment<PokeshopBuyFragmentPresenter>(), Pokesh
 
         // You can use GridLayoutManager if you want multiple columns. Enter the number of columns as a parameter.
 //        rv_animal_list.layoutManager = GridLayoutManager(this, 2)
-        presenter.getPokemons()
+        presenter.getPokemons(compositeDisposable)
 
+    }
+
+    override fun onDestroy() {
+        compositeDisposable.clear()
+        super.onDestroy()
     }
 
     override fun hideLoader() {
