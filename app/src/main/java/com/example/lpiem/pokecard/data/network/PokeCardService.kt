@@ -1,9 +1,6 @@
 package com.example.lpiem.pokecard.data.network
 
-import com.example.lpiem.pokecard.data.entity.Pokemons
-import com.example.lpiem.pokecard.data.entity.SignResponse
-import com.example.lpiem.pokecard.data.entity.SigninUser
-import com.example.lpiem.pokecard.data.entity.SignupUser
+import com.example.lpiem.pokecard.data.entity.*
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -28,5 +25,8 @@ interface PokeCardService {
     fun signin(@Body signinUser: SigninUser):
             Single<SignResponse>
 
+    @POST("signintoken/")
+    fun signinToken(@Body token: Token):
+            Single<SignResponse>
 
 }
