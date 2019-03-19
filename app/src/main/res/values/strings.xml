@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">PokeCard</string>
+    <string name="version">Version 1.0</string>
+    <string name="developers">App created by Brandon Gosse and Jordan Bonnot</string>
+    <string name="facebook_app_id">271366743513778</string>
+    <string name="fb_login_protocol_scheme">fb271366743513778</string>
+    <string name="registerMessage">Vous pouvez vous inscrire par email en appuyant sur le bouton ci-dessous ....</string>
+    <string name="registerButton">S\'inscrire</string>
+    <string name="loginMessage">... ou alors vous connecter si vous avez déjà un compte, vous pouvez également vous connecter grâce à Facebook ou Google</string>
+    <string name="loginButton">Se connecter</string>
+    <string name="emailField">E-mail</string>
+    <string name="passwordField">Mot de passe</string>
+    <string name="pseudoField">Pseudo</string>
+    <string name="alreadyHaveAccount">J\'ai déjà un compte</string>
+    <string name="registerMessage2">Inscrivez-vous ici.\nSi vous avez déjà un compte, cliquez sur le bouton "J\'ai déjà un compte"</string>
+    <string name="facebookConnectionOK">Vous êtes connectés à PokeCard avec Facebook</string>
+    <string name="facebookConnectionNOK">La connexion à Facebook a échouée</string>
+    <string name="facebookConnectionCanceled">La connexion à Facebook a été annulée</string>
+    <string name="googleConnectionOK">Vous êtes connectés à PokeCard avec Google</string>
+    <string name="googleConnectionNOK">La connexion à Google a échouée</string>
+    <string name="googleConnectionCanceled">La connexion à Google a été annulée</string>
+    <string name="emailOrPasswordMissing">L\'email ou le mot de passe est manquant</string>
+    <string name="emailNotValid">Le format de l\'email n\'est pas valide</string>
+    <string name="fillAllFields">Veuillez remplir tous les champs</string>
+    <string name="myProfile">Mon Profil</string>
+    <string name="myPokedex">Mon Pokédex</string>
+    <string name="myFriends">Mes amis</string>
+    <string name="fights">Combattre</string>
+    <string name="pokeshop">Pokéshop</string>
+    <string name="myPokemons">Mes Pokémons</string>
+    <string name="sell">Vendre</string>
+    <string name="buy">Acheter</string>
+    <string name="numberOfCoins">X</string>
+    <string name="numberOfDiamonds">N</string>
+    <string name="diamondIconDesc">Icon Diamond Description</string>
+    <string name="pokedollarIconDesc">Icon Pokedollar Description</string>
+    <string name="buyContentDescription">buyIcon</string>
+    <string name="sellContentDescription">sellIcon</string>
+    <string name="pokeshopText">Bienvenue dans le Pokéshop. Vous pouvez acheter ou vendre des pokémons avec des Poképièces. Vous pouvez également acheter des Poképièces.  </string>
+    <string name="pokemonName">Nom du Pokémon</string>
+    <string name="pokemonPrice">Prix du pokémon</string>
+    <string name="pokemonSpriteDesc">Sprite du pokémon</string>
+
 </resources>

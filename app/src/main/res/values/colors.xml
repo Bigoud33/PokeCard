@@ -3,4 +3,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="bluePokemon">#2A75BB</color>
+    <color name="yellowPokemon">#FFCB05</color>
+    <color name="colorAccentDark">#4aa87a</color>
+    <color name="notCheckedItem">#000000</color>
+    <color name="checkedItem">#FFFFFF</color>
 </resources>
