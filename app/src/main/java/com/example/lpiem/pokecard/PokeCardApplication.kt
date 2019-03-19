@@ -2,6 +2,7 @@ package com.example.lpiem.pokecard
 
 import android.app.Activity
 import android.app.Application
+import com.example.lpiem.pokecard.di.AppModule
 import com.example.lpiem.pokecard.di.DaggerAppComponent
 import com.github.ajalt.timberkt.Timber
 import dagger.android.AndroidInjector
@@ -19,6 +20,7 @@ class PokeCardApplication : Application(), HasActivityInjector {
         DaggerAppComponent
             .builder()
             .application(this)
+            .appModule(AppModule(this))
             .build()
             .inject(this)
 

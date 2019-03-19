@@ -1,12 +1,32 @@
 package com.example.lpiem.pokecard.data.network
 
 import com.example.lpiem.pokecard.data.entity.Pokemons
+import com.example.lpiem.pokecard.data.entity.SignResponse
+import com.example.lpiem.pokecard.data.entity.SigninUser
+import com.example.lpiem.pokecard.data.entity.SignupUser
 import io.reactivex.Single
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface PokeCardService {
 
-    @GET("pokemon/")
+    @GET("pokemons/")
     fun getPokemons():
             Single<Pokemons>
+
+    @GET("user/{userId}/pokemons/")
+    fun getPokemonsForUser(@Path("userId") userId: String):
+            Single<Pokemons>
+
+    @POST("signup/")
+    fun signup(@Body signupUser: SignupUser):
+            Single<SignResponse>
+
+    @POST("signin/")
+    fun signin(@Body signinUser: SigninUser):
+            Single<SignResponse>
+
+
 }
