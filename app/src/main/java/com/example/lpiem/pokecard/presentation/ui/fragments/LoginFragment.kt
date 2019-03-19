@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
+import com.example.lpiem.pokecard.data.entity.SigninUser
 import com.example.lpiem.pokecard.presentation.presenter.LoginFragmentPresenter
 import com.example.lpiem.pokecard.presentation.presenter.LoginView
 import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
@@ -28,10 +30,27 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_login.*
-import java.util.regex.Pattern
 import javax.inject.Inject
 
+
 class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
+    override fun displayLoader() {
+        //
+    }
+
+    override fun hideLoader() {
+        //
+    }
+
+    override fun showError(errorMessage: String) {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun goToMain() {
+        val intent = Intent(context, MainActivity::class.java)
+        startActivity(intent)
+        activity?.finish()
+    }
 
     private lateinit var callbackManager: CallbackManager
     private lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -48,19 +67,26 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
         super.onAttach(context)
     }
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter.attach(this)
         callbackManager = CallbackManager.Factory.create()
+        password.setOnEditorActionListener { _, actionId, event ->
+            if (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER || actionId == EditorInfo.IME_ACTION_DONE) {
+                //do what you want on the press of 'done'
+                loginEmail_button.performClick()
+            }
+            false
+        }
 
 
-
-
-        login_button.setReadPermissions("email")
-
+        // Facebook
+        loginFacebook_button.setReadPermissions("email")
+        loginFacebook_button.fragment = this
 
         // Callback registration
-        login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+        loginFacebook_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 Toast.makeText(context, getString(R.string.facebookConnectionOK), Toast.LENGTH_SHORT).show()
             }
@@ -74,9 +100,13 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
                 Toast.makeText(context,exception.message, Toast.LENGTH_SHORT).show()
             }
         })
-
         val accessToken = AccessToken.getCurrentAccessToken()
+
         val isLoggedIn = accessToken != null && !accessToken.isExpired
+        if(isLoggedIn) {
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         // Google
 
@@ -86,21 +116,21 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this.activity!!,gso)
 
-        sign_in_button.setSize(SignInButton.SIZE_STANDARD)
-
-        // Oher
+        loginGoogle_button.setSize(SignInButton.SIZE_STANDARD)
 
 
 
-        registerBtn.setOnClickListener {
+        register_button.setOnClickListener {
             register()
         }
-        loginBtn.setOnClickListener {
+        loginEmail_button.setOnClickListener {
             login()
         }
-        sign_in_button.setOnClickListener {
+        loginGoogle_button.setOnClickListener {
             signInGoogle()
         }
+
+
 
 
 
@@ -123,15 +153,13 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
-
             val account = completedTask.getResult(ApiException::class.java)
-
             // Signed in successfully, show authenticated UI.
             Toast.makeText(context, getString(R.string.googleConnectionOK), Toast.LENGTH_SHORT).show()
-
             updateUI(account)
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
+            activity?.finish()
         } catch (e: ApiException) {
             Toast.makeText(context, getString(R.string.googleConnectionNOK), Toast.LENGTH_SHORT).show()
             // The ApiException status code indicates the detailed failure reason.
@@ -143,8 +171,7 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
     }
 
     private fun updateUI(account: GoogleSignInAccount?) {
-
-        val textView = sign_in_button.getChildAt(0) as TextView
+        val textView = loginGoogle_button.getChildAt(0) as TextView
         textView.text = "Connecté en tant que "+account?.displayName
     }
 
@@ -169,10 +196,8 @@ class LoginFragment: BaseFragment<LoginFragmentPresenter>(), LoginView {
         else if (!(email.text!!.isEmpty()) && !(EmailValidator().isEmailValid(email.text.toString()))){
             Toast.makeText(context,getString(R.string.emailNotValid), Toast.LENGTH_SHORT).show()
         } else {
-            // MUST check if email and password exists and are good
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
-            activity!!.finish()
+            val signinUser = SigninUser(email.text.toString(), password.text.toString())
+            presenter.signin(signinUser)
         }
     }
 

@@ -29,4 +29,6 @@ class LoginActivity: AppCompatActivity(), HasSupportFragmentInjector{
                 .commit()
         }
     }
+
+
 }

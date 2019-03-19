@@ -39,6 +39,11 @@ class PokedexFragment : BaseFragment<PokedexFragmentPresenter>(), PokedexView {
         val adapter = PokemonAdapter(pokemons, presenter)
         recyclerViewPokedex.adapter = adapter
         presenter.start(compositeDisposable)
+        val sharedPreferences = context?.getSharedPreferences("pokecard",Context.MODE_PRIVATE)
+        val test = sharedPreferences?.getString("user-token", "null")
+        val test2 = sharedPreferences?.getString("user-id", "null")
+
+        Toast.makeText(context, "$test and $test2", Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroy() {
@@ -58,7 +63,7 @@ class PokedexFragment : BaseFragment<PokedexFragmentPresenter>(), PokedexView {
         val pokemons = ArrayList<Pokemon>()
         val adapter = PokemonAdapter(pokemons, presenter)
         recyclerViewPokedex.adapter = adapter
-        for (pokemon in pokemonsList.results) {
+        for (pokemon in pokemonsList.pokemons) {
             pokemons.add(pokemon)
         }
         adapter.notifyDataSetChanged()
