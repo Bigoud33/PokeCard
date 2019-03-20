@@ -19,6 +19,7 @@ import com.example.lpiem.pokecard.presentation.ui.activities.RegisterActivity
 import com.example.lpiem.pokecard.utils.EmailValidator
 import com.facebook.*
 import com.facebook.login.LoginResult
+import com.github.ajalt.timberkt.Timber
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -97,8 +98,17 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
         // Callback registration
         loginFacebook_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
-                Log.d("onSucess","onSucess")
-
+                Timber.tag("onSuccess").d("onSuccess")
+                FacebookSdk.addLoggingBehavior(LoggingBehavior.REQUESTS)
+                GraphRequest.newMeRequest(
+                    AccessToken.getCurrentAccessToken()
+                ) { jsonObject, response ->
+                    Timber.tag("jsonObject").d(jsonObject.toString())
+                    val email = jsonObject.getString("id")
+                    Timber.tag("email").d(email)
+                    val signinUser = SigninUser(email, "")
+                    presenter.signinFacebookGoogle(signinUser)
+                }.executeAsync()
 
                 Toast.makeText(context, getString(R.string.facebookConnectionOK), Toast.LENGTH_SHORT).show()
             }
@@ -154,15 +164,6 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
         } else {
             callbackManager.onActivityResult(requestCode, resultCode, data)
             super.onActivityResult(requestCode, resultCode, data)
-            GraphRequest.newMeRequest(
-                AccessToken.getCurrentAccessToken()
-            ) { jsonObject, response ->
-                Log.d("jsonObject",jsonObject.toString())
-                val email = jsonObject.getString("email")
-                Log.d("email",email)
-                val signinUser = SigninUser(email, "")
-                presenter.signinFacebookGoogle(signinUser)
-            }
             /*val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)*/
         }
