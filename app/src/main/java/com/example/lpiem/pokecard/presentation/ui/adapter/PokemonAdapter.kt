@@ -45,12 +45,12 @@ class PokemonAdapter(private val pokemons: Pokemons, private val listener: Click
 
 
             itemView.setOnClickListener {
-                listener.itemClicked(position, context)
+                listener.itemClicked(data.id, context)
             }
         }
     }
 
     interface ClickOnRecycler {
-        fun itemClicked(position: Int, context: Context)
+        fun itemClicked(pokemonId: String, context: Context)
     }
 }
