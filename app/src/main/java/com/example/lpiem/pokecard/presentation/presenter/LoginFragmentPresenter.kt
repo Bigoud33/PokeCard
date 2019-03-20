@@ -67,4 +67,34 @@ constructor(private val service: PokeCardService, private val context: Context) 
                 }
             )
     }
+
+    fun signinFacebookGoogle(signinUser: SigninUser) {
+        service.signinFacebookGoogle(signinUser)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onError = {
+                    /*view.hideLoader()
+                    view.showError(it)*/
+                    view.showError(it.localizedMessage)
+                },
+                onSuccess = {
+                    /*view.hideLoader()
+                    view.showPokemons(it)*/
+                    if(it.error != null){
+                        view.showError(it.error)
+                    } else {
+                        val sharedPreferences = context.getSharedPreferences("pokecard", Context.MODE_PRIVATE)
+
+                        sharedPreferences
+                            .edit()
+                            .putString("user-token", it.token)
+                            .putString("user-id", it.id)
+                            .apply()
+                        view.goToMain()
+
+                    }
+                }
+            )
+    }
 }

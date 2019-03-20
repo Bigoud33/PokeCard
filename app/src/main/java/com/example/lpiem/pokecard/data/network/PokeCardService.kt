@@ -29,4 +29,8 @@ interface PokeCardService {
     fun signinToken(@Body token: Token):
             Single<SignResponse>
 
+    @POST("signinfacebookgoogle/")
+    fun signinFacebookGoogle(@Body signinUser: SigninUser):
+            Single<SignResponse>
+
 }
