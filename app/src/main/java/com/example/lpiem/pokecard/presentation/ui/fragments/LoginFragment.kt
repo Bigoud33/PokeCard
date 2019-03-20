@@ -182,9 +182,10 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
             // Signed in successfully, show authenticated UI.
             Toast.makeText(context, getString(R.string.googleConnectionOK), Toast.LENGTH_SHORT).show()
             updateUI(account)
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
+
+            val signinUser = SigninUser(account!!.email!!, "")
+
+            presenter.signinFacebookGoogle(signinUser)
         } catch (e: ApiException) {
             Toast.makeText(context, getString(R.string.googleConnectionNOK), Toast.LENGTH_SHORT).show()
             // The ApiException status code indicates the detailed failure reason.
