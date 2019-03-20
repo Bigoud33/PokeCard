@@ -60,8 +60,8 @@ class PokedexFragment : BaseFragment<PokedexFragmentPresenter>(), PokedexView {
         Toast.makeText(context, throwable.localizedMessage, Toast.LENGTH_LONG).show()
     }
 
-    override fun goToDetail(position: Int) {
-        (activity as MainActivity).goToDetails(position)
+    override fun goToDetail(pokemonId: String) {
+        (activity as MainActivity).goToDetails(pokemonId)
     }
 
 }

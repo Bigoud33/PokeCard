@@ -31,7 +31,7 @@ class PokemonAdapter(private val pokemons: Pokemons, private val listener: Click
 
     class ViewHolder(view: View, private val listener: ClickOnRecycler) : RecyclerView.ViewHolder(view) {
         val context: Context = itemView.context
-        val picture: AppCompatImageView = itemView.pokemonPicture
+        val picture: AppCompatImageView = itemView.pokemonImageView
         val name: AppCompatTextView = itemView.pokemonName
 
         fun bindItems(data: Pokemon, position: Int) {

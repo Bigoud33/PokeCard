@@ -10,6 +10,7 @@ import com.example.lpiem.pokecard.presentation.presenter.PokemonDetailsFragmentP
 import com.example.lpiem.pokecard.presentation.presenter.PokemonDetailsView
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.pokemon_details_fragment.*
 import javax.inject.Inject
 
 class PokemonDetailsFragment : BaseFragment<PokemonDetailsFragmentPresenter>(), PokemonDetailsView {
@@ -31,7 +32,7 @@ class PokemonDetailsFragment : BaseFragment<PokemonDetailsFragmentPresenter>(), 
         arguments?.let { arg ->
             presenter.start(arg.getString("POKEMONID")!!, compositeDisposable)
         }
-        
+
     }
 
     override fun onDestroy() {
@@ -40,11 +41,11 @@ class PokemonDetailsFragment : BaseFragment<PokemonDetailsFragmentPresenter>(), 
     }
 
     override fun displayLoader() {
-        progress_bar.show()
+        progressBar.show()
     }
 
     override fun hideLoader() {
-        progress_bar.hide()
+        progressBar.hide()
     }
 
     override fun showPokemon(pokemon: PokemonDetails) {

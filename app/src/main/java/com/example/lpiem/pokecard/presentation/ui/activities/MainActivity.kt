@@ -77,10 +77,10 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         }
     }
 
-    fun goToDetails(position: Int) {
+    fun goToDetails(pokemonId: String) {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.activityContainer, PokemonDetailsFragment.newInstance(""))
+            .replace(R.id.activityContainer, PokemonDetailsFragment.newInstance(pokemonId))
             .commit()
     }
 

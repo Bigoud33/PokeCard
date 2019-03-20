@@ -32,4 +32,7 @@ abstract class ActivityModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributePokeshopBuyFragment(): PokeshopBuyFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributePokemonDetailsFragment(): PokemonDetailsFragment
 }
