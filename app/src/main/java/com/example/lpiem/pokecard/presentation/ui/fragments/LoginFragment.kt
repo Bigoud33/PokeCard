@@ -99,7 +99,6 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
         loginFacebook_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 Timber.tag("onSuccess").d("onSuccess")
-                FacebookSdk.addLoggingBehavior(LoggingBehavior.REQUESTS)
                 GraphRequest.newMeRequest(
                     AccessToken.getCurrentAccessToken()
                 ) { jsonObject, response ->
@@ -126,8 +125,15 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
 
         val isLoggedIn = accessToken != null && !accessToken.isExpired
         if (isLoggedIn) {
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
+            GraphRequest.newMeRequest(
+                AccessToken.getCurrentAccessToken()
+            ) { jsonObject, response ->
+                Timber.tag("jsonObject").d(jsonObject.toString())
+                val email = jsonObject.getString("id")
+                Timber.tag("email").d(email)
+                val signinUser = SigninUser(email, "")
+                presenter.signinFacebookGoogle(signinUser)
+            }.executeAsync()
         }
 
         // Google
