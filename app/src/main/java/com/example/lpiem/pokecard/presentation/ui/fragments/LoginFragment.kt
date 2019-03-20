@@ -29,7 +29,6 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_login.*
-import org.json.JSONObject
 import javax.inject.Inject
 
 
@@ -136,6 +135,13 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
             }.executeAsync()
         }
 
+        val account = GoogleSignIn.getLastSignedInAccount(context)
+        updateUI(account)
+        if (account != null) {
+            val signinUser = SigninUser(account.email!!, "")
+            presenter.signinFacebookGoogle(signinUser)
+        }
+
         // Google
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -182,9 +188,8 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
             // Signed in successfully, show authenticated UI.
             Toast.makeText(context, getString(R.string.googleConnectionOK), Toast.LENGTH_SHORT).show()
             updateUI(account)
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
+            val signinUser = SigninUser(account!!.email!!, "")
+            presenter.signinFacebookGoogle(signinUser)
         } catch (e: ApiException) {
             Toast.makeText(context, getString(R.string.googleConnectionNOK), Toast.LENGTH_SHORT).show()
             // The ApiException status code indicates the detailed failure reason.
