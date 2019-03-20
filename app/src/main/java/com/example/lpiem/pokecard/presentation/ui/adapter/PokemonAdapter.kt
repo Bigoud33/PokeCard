@@ -36,10 +36,9 @@ class PokemonAdapter(private val pokemons: Pokemons, private val listener: Click
 
         fun bindItems(data: Pokemon, position: Int) {
 
-            name.text = data.name
-            val spriteURL = URL(data.sprite)
+            name.text = data.name.capitalize()
             Glide.with(context)
-                .load(spriteURL)
+                .load(data.sprite)
                 .into(picture)
 
 

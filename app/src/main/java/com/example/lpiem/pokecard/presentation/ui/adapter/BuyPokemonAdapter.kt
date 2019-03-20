@@ -14,11 +14,10 @@ import java.net.URL
 class BuyPokemonAdapter(val pokemons : Pokemons/*Temp ArrayList<String> */, val context: Context?) : RecyclerView.Adapter<BuyPokemonAdapter.ViewHolder>()  {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder?.tvNamePokemon.text = pokemons.pokemons[position].name
+        holder?.tvNamePokemon.text = pokemons.pokemons[position].name.capitalize()
         holder?.tvPokemonPrice.text = pokemons.pokemons[position].price.toString()
-        val spriteURL = URL(pokemons.pokemons[position].sprite)
         Glide.with(context)
-            .load(spriteURL)
+            .load(pokemons.pokemons[position].sprite)
             .into(holder?.ivPokemonSprite)
 
     }

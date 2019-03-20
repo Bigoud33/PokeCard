@@ -3,6 +3,7 @@ package com.example.lpiem.pokecard.presentation.ui.fragments
 import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
 import com.example.lpiem.pokecard.data.entity.PokemonDetails
@@ -49,7 +50,17 @@ class PokemonDetailsFragment : BaseFragment<PokemonDetailsFragmentPresenter>(), 
     }
 
     override fun showPokemon(pokemon: PokemonDetails) {
-
+        Glide.with(context)
+            .load(pokemon.sprite)
+            .into(pokemonImageView)
+        pokemonName.text = pokemon.name.capitalize()
+        hpLabelValue.text = pokemon.hp.toString()
+        speedLabelValue.text = pokemon.speed.toString()
+        attackLabelValue.text = pokemon.attack.toString()
+        defenseLabelValue.text = pokemon.defense.toString()
+        specialAttackLabelValue.text = pokemon.specialAttack.toString()
+        specialDefenseLabelValue.text = pokemon.specialDefense.toString()
+        price.text = pokemon.price.toString()
     }
 
     override fun showError(throwable: Throwable) {
