@@ -141,4 +141,10 @@
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent" android:visibility="gone"
             tools:visibility="visible"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/ic_pokedollar"
+            android:id="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/price" android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/price" app:layout_constraintTop_toTopOf="@+id/price"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
