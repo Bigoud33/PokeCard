@@ -17,7 +17,7 @@
     <string name="facebookConnectionNOK">La connexion à Facebook a échouée</string>
     <string name="facebookConnectionCanceled">La connexion à Facebook a été annulée</string>
     <string name="googleConnectionOK">Vous êtes connectés à PokeCard avec Google</string>
-    <string name="googleConnectionNOK">La connexion à Google a échouée</string>
+    <string name="googleConnectionNOK">La connexion à Google a échouée 2</string>
     <string name="googleConnectionCanceled">La connexion à Google a été annulée</string>
     <string name="emailOrPasswordMissing">L\'email ou le mot de passe est manquant</string>
     <string name="emailNotValid">Le format de l\'email n\'est pas valide</string>
@@ -26,6 +26,7 @@
     <string name="myPokedex">Mon Pokédex</string>
     <string name="myFriends">Mes amis</string>
     <string name="fights">Combattre</string>
+    <string name="exchange">Echange</string>
     <string name="pokeshop">Pokéshop</string>
     <string name="myPokemons">Mes Pokémons</string>
     <string name="sell">Vendre</string>
@@ -40,5 +41,6 @@
     <string name="pokemonName">Nom du Pokémon</string>
     <string name="pokemonPrice">Prix du pokémon</string>
     <string name="pokemonSpriteDesc">Sprite du pokémon</string>
+    <string name="exchangeRequests">Demande d\'échanges</string>
 
 </resources>
