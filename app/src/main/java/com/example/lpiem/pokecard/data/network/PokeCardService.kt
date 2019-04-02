@@ -37,6 +37,7 @@ interface PokeCardService {
     fun signinFacebookGoogle(@Body signinUser: SigninUser):
             Single<SignResponse>
 
-
-
+    @GET("pokemon/{pokemonId}/")
+    fun getPokemon(@Path("pokemonId") pokemonId: String):
+            Single<PokemonDetails>
 }

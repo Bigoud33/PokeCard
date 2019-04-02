@@ -37,4 +37,6 @@ abstract class ActivityModule {
     internal abstract fun contributeProfileFragment(): ProfileFragment
 
 
+    @ContributesAndroidInjector
+    internal abstract fun contributePokemonDetailsFragment(): PokemonDetailsFragment
 }

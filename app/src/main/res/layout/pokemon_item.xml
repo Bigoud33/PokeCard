@@ -15,7 +15,7 @@
         <androidx.appcompat.widget.AppCompatImageView android:layout_width="50dp"
                                                       android:layout_height="50dp"
                                                       android:src="@drawable/ic_fights"
-                                                      android:id="@+id/pokemonPicture"/>
+                                                      android:id="@+id/pokemonImageView"/>
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/pokemonName"
