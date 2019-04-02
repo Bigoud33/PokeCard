@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_width="@dimen/com_facebook_profilepictureview_preset_size_normal"
+            android:layout_height="@dimen/com_facebook_profilepictureview_preset_size_normal"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:id="@+id/pokemonImageView"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="32dp"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pokemonName" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/pokemonImageView"/>
+    <TextView
+            android:text="Caractéristiques"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/caract" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/pokemonName"/>
+    <TextView
+            android:text="HP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/hpLabel"
+            app:layout_constraintWidth_percent="0.6"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/caract" android:layout_marginTop="16dp"/>
+    <TextView
+            android:text="Speed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/speedLabel" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/hpLabel"
+            app:layout_constraintWidth_percent="0.6"/>
+    <TextView
+            android:text="Attack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/attackLabel" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/speedLabel"
+            app:layout_constraintWidth_percent="0.6"/>
+    <TextView
+            android:text="Defense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/defenseLabel" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/attackLabel"
+            app:layout_constraintWidth_percent="0.6"/>
+    <TextView
+            android:text="Special Attack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/specialAttackLabel" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/defenseLabel"
+            app:layout_constraintWidth_percent="0.6"/>
+    <TextView
+            android:text="Special Defense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/specialDefenseLabel" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp" app:layout_constraintTop_toBottomOf="@+id/specialAttackLabel"
+            android:layout_marginTop="16dp"
+            app:layout_constraintWidth_percent="0.6"
+    />
+    <TextView
+            android:text="Price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/price" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/specialDefenseLabel"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/hpLabelValue"
+            app:layout_constraintTop_toBottomOf="@id/caract"
+            android:layout_marginTop="16dp" app:layout_constraintStart_toEndOf="@+id/hpLabel"
+            android:layout_marginStart="24dp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/speedLabelValue"
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toEndOf="@+id/speedLabel" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/hpLabelValue"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/attackLabelValue"
+            app:layout_constraintStart_toEndOf="@+id/attackLabel"
+            android:layout_marginStart="24dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/speedLabelValue"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/defenseLabelValue"
+            app:layout_constraintStart_toEndOf="@+id/defenseLabel"
+            android:layout_marginStart="24dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/attackLabelValue"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/specialAttackLabelValue"
+            app:layout_constraintStart_toEndOf="@+id/specialAttackLabel"
+            android:layout_marginStart="24dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/defenseLabelValue"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/specialDefenseLabelValue"
+            app:layout_constraintStart_toEndOf="@+id/specialDefenseLabel"
+            android:layout_marginStart="24dp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/specialAttackLabelValue"/>
+    <androidx.core.widget.ContentLoadingProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent" android:visibility="gone"
+            tools:visibility="visible"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/ic_pokedollar"
+            android:id="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/price" android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/price" app:layout_constraintTop_toTopOf="@+id/price"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="128dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

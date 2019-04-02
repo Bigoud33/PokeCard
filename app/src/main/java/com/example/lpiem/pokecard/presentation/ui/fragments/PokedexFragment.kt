@@ -10,6 +10,7 @@ import com.example.lpiem.pokecard.base.BaseFragment
 import com.example.lpiem.pokecard.data.entity.Pokemons
 import com.example.lpiem.pokecard.presentation.presenter.PokedexFragmentPresenter
 import com.example.lpiem.pokecard.presentation.presenter.PokedexView
+import com.example.lpiem.pokecard.presentation.ui.activities.MainActivity
 import com.example.lpiem.pokecard.presentation.ui.adapter.PokemonAdapter
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.disposables.CompositeDisposable
@@ -59,8 +60,8 @@ class PokedexFragment : BaseFragment<PokedexFragmentPresenter>(), PokedexView {
         Toast.makeText(context, throwable.localizedMessage, Toast.LENGTH_LONG).show()
     }
 
-    override fun goToDetail(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun goToDetail(pokemonId: String) {
+        (activity as MainActivity).goToDetails(pokemonId)
     }
 
 }

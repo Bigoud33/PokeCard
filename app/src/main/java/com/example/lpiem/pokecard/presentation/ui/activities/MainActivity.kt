@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.presentation.ui.fragments.PokedexFragment
+import com.example.lpiem.pokecard.presentation.ui.fragments.PokemonDetailsFragment
 import com.example.lpiem.pokecard.presentation.ui.fragments.PokeshopFragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -74,6 +75,13 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
             }
             true
         }
+    }
+
+    fun goToDetails(pokemonId: String) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.activityContainer, PokemonDetailsFragment.newInstance(pokemonId))
+            .commit()
     }
 
     /*private fun configureBottomView(){
