@@ -28,7 +28,6 @@ class ProfileFragment : BaseFragment<ProfileFragmentPresenter>(), ProfileView {
         userPseudo.text = user.pseudo
         userEmail.text = user.email
         userId.text = user.id
-        Log.d("tag",user.picture)
         Glide.with(context)
             .load(user.picture)
             .apply(RequestOptions.circleCropTransform())

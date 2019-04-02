@@ -4,6 +4,8 @@ import android.app.Activity
 import android.app.Application
 import com.example.lpiem.pokecard.di.AppModule
 import com.example.lpiem.pokecard.di.DaggerAppComponent
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.github.ajalt.timberkt.Timber
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -26,6 +28,8 @@ class PokeCardApplication : Application(), HasActivityInjector {
 
         Timber.uprootAll()
         Timber.plant(Timber.DebugTree())
+        FacebookSdk.sdkInitialize(applicationContext)
+        AppEventsLogger.activateApp(this)
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = activityInjector
