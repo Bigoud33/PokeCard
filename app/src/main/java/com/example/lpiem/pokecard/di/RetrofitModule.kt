@@ -7,6 +7,7 @@ import com.example.lpiem.pokecard.data.network.PokeCardService
 import com.github.ajalt.timberkt.Timber
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.squareup.picasso.Picasso
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

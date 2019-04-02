@@ -32,6 +32,8 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
 
+
+
 class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
     override fun displayLoader() {
         //
@@ -98,15 +100,19 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
         loginFacebook_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 Timber.tag("onSuccess").d("onSuccess")
-                GraphRequest.newMeRequest(
+                val request = GraphRequest.newMeRequest(
                     AccessToken.getCurrentAccessToken()
                 ) { jsonObject, response ->
                     Timber.tag("jsonObject").d(jsonObject.toString())
-                    val email = jsonObject.getString("id")
-                    Timber.tag("email").d(email)
-                    val signinUser = SigninUser(email, "")
+                    val email = jsonObject.getString("email")
+                    val pseudo = jsonObject.getString("name")
+                    val signinUser = SigninUser(email, "", pseudo)
                     presenter.signinFacebookGoogle(signinUser)
-                }.executeAsync()
+                }
+                val parameters = Bundle()
+                parameters.putString("fields", "id,name,email")
+                request.parameters = parameters
+                request.executeAsync()
 
                 Toast.makeText(context, getString(R.string.facebookConnectionOK), Toast.LENGTH_SHORT).show()
             }
@@ -124,21 +130,25 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
 
         val isLoggedIn = accessToken != null && !accessToken.isExpired
         if (isLoggedIn) {
-            GraphRequest.newMeRequest(
+            val request = GraphRequest.newMeRequest(
                 AccessToken.getCurrentAccessToken()
             ) { jsonObject, response ->
                 Timber.tag("jsonObject").d(jsonObject.toString())
-                val email = jsonObject.getString("id")
-                Timber.tag("email").d(email)
-                val signinUser = SigninUser(email, "")
+                val email = jsonObject.getString("email")
+                val pseudo = jsonObject.getString("name")
+                val signinUser = SigninUser(email, "", pseudo)
                 presenter.signinFacebookGoogle(signinUser)
-            }.executeAsync()
+            }
+            val parameters = Bundle()
+            parameters.putString("fields", "id,name,email")
+            request.parameters = parameters
+            request.executeAsync()
         }
 
         val account = GoogleSignIn.getLastSignedInAccount(context)
         updateUI(account)
         if (account != null) {
-            val signinUser = SigninUser(account.email!!, "")
+            val signinUser = SigninUser(account.email!!, "", account.displayName!!)
             presenter.signinFacebookGoogle(signinUser)
         }
 
@@ -188,7 +198,7 @@ class LoginFragment : BaseFragment<LoginFragmentPresenter>(), LoginView {
             // Signed in successfully, show authenticated UI.
             Toast.makeText(context, getString(R.string.googleConnectionOK), Toast.LENGTH_SHORT).show()
             updateUI(account)
-            val signinUser = SigninUser(account!!.email!!, "")
+            val signinUser = SigninUser(account!!.email!!, "", account.displayName!!)
             presenter.signinFacebookGoogle(signinUser)
         } catch (e: ApiException) {
             Toast.makeText(context, getString(R.string.googleConnectionNOK), Toast.LENGTH_SHORT).show()
