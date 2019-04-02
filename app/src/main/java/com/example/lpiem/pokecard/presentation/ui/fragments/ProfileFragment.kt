@@ -30,14 +30,12 @@ class ProfileFragment : BaseFragment<ProfileFragmentPresenter>(), ProfileView {
         userPseudo.text = user.pseudo
         userEmail.text = user.email
         userId.text = user.id
-//        Glide.with(context)
-//            .load(user.picture)
-//            .apply(RequestOptions.circleCropTransform())
-//            .into(profilePicture)
-        Picasso.get()
-            .load(user.picture)
-            .transform(CircleTransform())
-            .into(profilePicture)
+        if (user.picture != null) {
+            Picasso.get()
+                .load(user.picture)
+                .transform(CircleTransform())
+                .into(profilePicture)
+        }
     }
 
     override val layoutId: Int = com.example.lpiem.pokecard.R.layout.fragment_profile
