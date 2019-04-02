@@ -14,6 +14,8 @@ import com.example.lpiem.pokecard.base.BaseFragment
 import com.example.lpiem.pokecard.data.entity.User
 import com.example.lpiem.pokecard.presentation.presenter.ProfileFragmentPresenter
 import com.example.lpiem.pokecard.presentation.presenter.ProfileView
+import com.example.lpiem.pokecard.presentation.ui.picasso.CircleTransform
+import com.squareup.picasso.Picasso
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
@@ -28,9 +30,13 @@ class ProfileFragment : BaseFragment<ProfileFragmentPresenter>(), ProfileView {
         userPseudo.text = user.pseudo
         userEmail.text = user.email
         userId.text = user.id
-        Glide.with(context)
+//        Glide.with(context)
+//            .load(user.picture)
+//            .apply(RequestOptions.circleCropTransform())
+//            .into(profilePicture)
+        Picasso.get()
             .load(user.picture)
-            .apply(RequestOptions.circleCropTransform())
+            .transform(CircleTransform())
             .into(profilePicture)
     }
 
