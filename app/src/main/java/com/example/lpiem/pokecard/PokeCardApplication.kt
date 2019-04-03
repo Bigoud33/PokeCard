@@ -3,14 +3,19 @@ package com.example.lpiem.pokecard
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import androidx.multidex.MultiDex
 import com.example.lpiem.pokecard.di.AppModule
 import com.example.lpiem.pokecard.di.DaggerAppComponent
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.github.ajalt.timberkt.Timber
 import com.parse.ParseInstallation
+import com.squareup.picasso.OkHttp3Downloader
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
+import com.squareup.picasso.Picasso
 import com.parse.Parse
 import okhttp3.OkHttpClient
 import java.security.KeyStore
@@ -29,13 +34,25 @@ class PokeCardApplication : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
+        MultiDex.install(this)
+        initDagger()
+        initTimber()
+        initFacebook()
+        initPicasso()
+    }
+
+    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
+
+    fun initDagger() {
         DaggerAppComponent
             .builder()
             .application(this)
             .appModule(AppModule(this))
             .build()
             .inject(this)
+    }
 
+    fun initTimber() {
         Timber.uprootAll()
         Timber.plant(Timber.DebugTree())
         Parse.initialize(
@@ -50,7 +67,10 @@ class PokeCardApplication : Application(), HasActivityInjector {
         ParseInstallation.getCurrentInstallation().saveInBackground()
     }
 
-    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
+    fun initFacebook() {
+        FacebookSdk.sdkInitialize(applicationContext)
+        AppEventsLogger.activateApp(this)
+    }
 
     fun provideHttpClient(context: Context): OkHttpClient.Builder {
 
@@ -83,11 +103,13 @@ class PokeCardApplication : Application(), HasActivityInjector {
 
 
 
-        return OkHttpClient.Builder()
+        val clientBuilder = OkHttpClient.Builder()
             .readTimeout(15, TimeUnit.SECONDS)
             .writeTimeout(15, TimeUnit.SECONDS)
             .sslSocketFactory(sslSocketFactory, x509TrustManager)
             .hostnameVerifier(myHostNameVerifier())
+
+        return clientBuilder
     }
 
     private fun myHostNameVerifier(): HostnameVerifier {
@@ -98,5 +120,18 @@ class PokeCardApplication : Application(), HasActivityInjector {
 
             false
         }
+    }
+
+    fun initPicasso() {
+        val picassoBuilder = Picasso.Builder(this)
+        picassoBuilder.downloader(OkHttp3Downloader(provideHttpClient(this).build()))
+        val picasso = picassoBuilder.build()
+        try {
+            Picasso.setSingletonInstance(picasso)
+        } catch (ignored: IllegalStateException) {
+            // Picasso instance was already set
+            // cannot set it after Picasso.with(Context) was already in use
+        }
+
     }
 }

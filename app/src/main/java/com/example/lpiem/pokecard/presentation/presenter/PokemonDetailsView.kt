@@ -1,14 +1,13 @@
 package com.example.lpiem.pokecard.presentation.presenter
 
 import com.example.lpiem.pokecard.base.BaseView
-import com.example.lpiem.pokecard.data.entity.Pokemons
+import com.example.lpiem.pokecard.data.entity.PokemonDetails
 
-interface PokedexView : BaseView {
+interface PokemonDetailsView : BaseView {
 
     fun displayLoader()
     fun hideLoader()
-    fun showPokemons(pokemonsList: Pokemons)
+    fun showPokemon(pokemon: PokemonDetails)
     fun showError(throwable: Throwable)
-    fun goToDetail(pokemonId: String)
 
 }
