@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "37510362439",
+    "firebase_url": "https://pokecard-1539764396644.firebaseio.com",
+    "project_id": "pokecard-1539764396644",
+    "storage_bucket": "pokecard-1539764396644.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37510362439:android:f3021f3eb529ff3f",
+        "android_client_info": {
+          "package_name": "com.example.lpiem.pokecard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVwXOSuA_b4W4M2e8nLhGriMs_kQEG2_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37510362439-fp490m8r3v9c90bih434vfng4v3p35ip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
