@@ -7,6 +7,7 @@ import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.presentation.ui.fragments.PokedexFragment
 import com.example.lpiem.pokecard.presentation.ui.fragments.PokemonDetailsFragment
 import com.example.lpiem.pokecard.presentation.ui.fragments.PokeshopFragment
+import com.example.lpiem.pokecard.presentation.ui.fragments.ProfileFragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -63,14 +64,14 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
                             .replace(R.id.activityContainer, FriendsFragment())
                             .commit()
                         activeFragment = R.id.action_friends
-                    }
+                    }*/
                     R.id.action_profile -> {
                         supportFragmentManager
                             .beginTransaction()
                             .replace(R.id.activityContainer, ProfileFragment())
                             .commit()
                         activeFragment = R.id.action_profile
-                    }*/
+                    }
                 }
             }
             true

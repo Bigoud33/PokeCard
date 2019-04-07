@@ -17,6 +17,10 @@ interface PokeCardService {
     fun getPokemonsForUser(@Path("userId") userId: String):
             Single<Pokemons>
 
+    @GET("user/{userId}/")
+    fun getProfile(@Path("userId") userId: String):
+            Single<User>
+
     @POST("signup/")
     fun signup(@Body signupUser: SignupUser):
             Single<SignResponse>
