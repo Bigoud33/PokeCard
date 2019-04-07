@@ -26,13 +26,13 @@ class ExchangeRequestsAdapter(val exchangeRequests : Exchanges, val context: Con
         holder?.tvUserId1.text = exchangeRequests.results[position].userId1.capitalize()
         holder?.tvPokemonToExchange1.text = exchangeRequests.results[position].pokemonToExchange1.name
         Picasso.get()
-            .load(exchangeRequests.results[position].pokemonSprite1)
+            .load(exchangeRequests.results[position].pokemonToExchange1.sprite)
             .transform(CircleTransform())
             .into(holder.ivPokemon1)
         holder?.tvUserId2.text = exchangeRequests.results[position].userId2.capitalize()
         holder?.tvPokemonToExchange2.text = exchangeRequests.results[position].pokemonToExchange2.name
         Picasso.get()
-            .load(exchangeRequests.results[position].pokemonSprite2)
+            .load(exchangeRequests.results[position].pokemonToExchange2.sprite)
             .transform(CircleTransform())
             .into(holder.ivPokemon2)
     }
