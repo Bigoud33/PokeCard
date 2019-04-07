@@ -41,8 +41,8 @@ interface PokeCardService {
     fun getPokemon(@Path("pokemonId") pokemonId: String):
             Single<PokemonDetails>
 
-    @GET("exchanges/{userId}")
-    fun getExchangeRequestsForUser(@Path("userId") userId: String):
+    @POST("exchanges/")
+    fun getExchangeRequestsForUser():
             Single<Exchanges>
 
 

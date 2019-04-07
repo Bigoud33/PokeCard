@@ -11,9 +11,9 @@ import javax.inject.Inject
 
 class ExchangeFragmentPresenter
 @Inject constructor(private val service: PokeCardService, private val context: Context) : BasePresenter<ExchangeView>() {
-    fun getExchangeRequestsForUser(userId: String, compositeDisposable: CompositeDisposable) {
+    fun getExchangeRequestsForUser(compositeDisposable: CompositeDisposable) {
         compositeDisposable.add(
-            service.getExchangeRequestsForUser(userId)
+            service.getExchangeRequestsForUser()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
