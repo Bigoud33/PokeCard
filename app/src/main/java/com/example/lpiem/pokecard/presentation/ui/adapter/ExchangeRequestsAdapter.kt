@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.data.entity.Exchanges
+import com.example.lpiem.pokecard.presentation.ui.picasso.CircleTransform
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.exchange_request_item.view.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ExchangeRequestsAdapter(val exchangeRequests : Exchanges, val context: Context?) : RecyclerView.Adapter<ExchangeRequestsAdapter.ViewHolder>()  {
 
@@ -22,9 +25,16 @@ class ExchangeRequestsAdapter(val exchangeRequests : Exchanges, val context: Con
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder?.tvUserId1.text = exchangeRequests.results[position].userId1.capitalize()
         holder?.tvPokemonToExchange1.text = exchangeRequests.results[position].pokemonToExchange1.name
-
+        Picasso.get()
+            .load(exchangeRequests.results[position].pokemonSprite1)
+            .transform(CircleTransform())
+            .into(holder.ivPokemon1)
         holder?.tvUserId2.text = exchangeRequests.results[position].userId2.capitalize()
         holder?.tvPokemonToExchange2.text = exchangeRequests.results[position].pokemonToExchange2.name
+        Picasso.get()
+            .load(exchangeRequests.results[position].pokemonSprite2)
+            .transform(CircleTransform())
+            .into(holder.ivPokemon2)
     }
 
 
