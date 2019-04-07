@@ -22,6 +22,7 @@ class ExchangeRequestsAdapter(val exchangeRequests : Exchanges, val context: Con
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder?.tvUserId1.text = exchangeRequests.results[position].userId1.capitalize()
         holder?.tvPokemonToExchange1.text = exchangeRequests.results[position].pokemonToExchange1.name
+
         holder?.tvUserId2.text = exchangeRequests.results[position].userId2.capitalize()
         holder?.tvPokemonToExchange2.text = exchangeRequests.results[position].pokemonToExchange2.name
     }
@@ -30,8 +31,9 @@ class ExchangeRequestsAdapter(val exchangeRequests : Exchanges, val context: Con
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         var tvUserId1 = view.userId1
         var tvPokemonToExchange1 = view.pokemonToExchange1
-        var tvUserId2 = view.userId2
+        var tvUserId2 = view.pokemonToExchange2
         var tvPokemonToExchange2 = view.pokemonToExchange2
-
+        var ivPokemon1 = view.pokemonSprite1
+        var ivPokemon2 = view.pokemonSprite2
     }
 }

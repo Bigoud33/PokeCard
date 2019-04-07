@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.lpiem.pokecard.R
+import com.example.lpiem.pokecard.presentation.ui.fragments.ExchangeFragment
 import com.example.lpiem.pokecard.presentation.ui.fragments.PokedexFragment
 import com.example.lpiem.pokecard.presentation.ui.fragments.PokemonDetailsFragment
 import com.example.lpiem.pokecard.presentation.ui.fragments.PokeshopFragment
@@ -51,13 +52,13 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
                             .commit()
                         activeFragment = R.id.action_pokeshop
                     }
-                    /*R.id.action_fights -> {
+                    R.id.action_exchanges -> {
                         supportFragmentManager
                             .beginTransaction()
-                            .replace(R.id.activityContainer, FightFragment())
+                            .replace(R.id.activityContainer, ExchangeFragment())
                             .commit()
-                        activeFragment = R.id.action_fights
-                    }
+                        activeFragment = R.id.action_exchanges
+                    }/*
                     R.id.action_friends -> {
                         supportFragmentManager
                             .beginTransaction()
