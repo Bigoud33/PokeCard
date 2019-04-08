@@ -9,6 +9,6 @@ interface ExchangeView : BaseView {
     fun displayLoader()
     fun hideLoader()
     fun showError(errorMessage: String)
-    fun sendExchangeRequest()
+    fun sendExchangeRequest(userIdString: String)
     fun showExchangeRequests(exchangeRequests: Exchanges)
 }

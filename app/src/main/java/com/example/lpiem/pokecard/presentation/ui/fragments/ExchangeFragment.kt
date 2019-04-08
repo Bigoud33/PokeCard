@@ -1,9 +1,11 @@
 package com.example.lpiem.pokecard.presentation.ui.fragments
 
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
@@ -44,7 +46,7 @@ class ExchangeFragment : BaseFragment<ExchangeFragmentPresenter>(), ExchangeView
         Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
-    override fun sendExchangeRequest() {
+    override fun sendExchangeRequest(userIdString: String) {
         //
     }
 
@@ -72,6 +74,9 @@ class ExchangeFragment : BaseFragment<ExchangeFragmentPresenter>(), ExchangeView
         val userIdStr = sharedPreferences?.getString("user-id", "null")
         val userId = UserId(userIdStr!!)
         presenter.getExchangeRequestsForUser(userId!!, compositeDisposable)
+        newExchangeButton.setOnClickListener {
+            sendExchangeRequest(userIdStr)
+        }
     }
 
 }
