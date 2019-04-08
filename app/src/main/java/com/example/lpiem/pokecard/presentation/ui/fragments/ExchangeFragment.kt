@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
+import com.example.lpiem.pokecard.data.entity.ExchangeServerResponse
 import com.example.lpiem.pokecard.data.entity.Exchanges
 import com.example.lpiem.pokecard.data.entity.Pokemons
 import com.example.lpiem.pokecard.data.entity.UserId
@@ -24,6 +25,8 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
 class ExchangeFragment : BaseFragment<ExchangeFragmentPresenter>(), ExchangeView {
+
+
     override val layoutId: Int = R.layout.fragment_exchange_list
     @Inject
     override lateinit var presenter: ExchangeFragmentPresenter
@@ -52,7 +55,7 @@ class ExchangeFragment : BaseFragment<ExchangeFragmentPresenter>(), ExchangeView
 
     override fun showExchangeRequests(exchangeRequests: Exchanges) {
         Log.d("Datas : ", exchangeRequests.toString())
-        val adapter = ExchangeRequestsAdapter(exchangeRequests,context!!)
+        val adapter = ExchangeRequestsAdapter(exchangeRequests,context!!, presenter)
         recyclerViewExchangeRequests.layoutManager = LinearLayoutManager(context)
         recyclerViewExchangeRequests.adapter = adapter
     }

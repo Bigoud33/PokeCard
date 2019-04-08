@@ -45,5 +45,9 @@ interface PokeCardService {
     fun getExchangeRequestsForUser(@Body userId: UserId):
             Single<Exchanges>
 
+    @POST("secondrespondtoexchange")
+    fun secondrespondtoexchange(@Body secondResponse : SecondResponse):
+            Single<ExchangeServerResponse>
+
 
 }
