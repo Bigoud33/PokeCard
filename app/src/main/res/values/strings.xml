@@ -42,5 +42,5 @@
     <string name="pokemonPrice">Prix du pokémon</string>
     <string name="pokemonSpriteDesc">Sprite du pokémon</string>
     <string name="exchangeRequests">Demande d\'échanges</string>
-
+    <string name="newExchangeButton">Nouvelle demande d\'échange</string>
 </resources>
