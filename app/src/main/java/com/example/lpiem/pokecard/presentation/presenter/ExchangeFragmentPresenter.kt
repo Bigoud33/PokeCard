@@ -5,6 +5,7 @@ import com.example.lpiem.pokecard.base.BasePresenter
 import com.example.lpiem.pokecard.data.entity.SecondResponse
 import com.example.lpiem.pokecard.data.entity.UserId
 import com.example.lpiem.pokecard.data.network.PokeCardService
+import com.example.lpiem.pokecard.presentation.ui.adapter.ExchangeRequestsAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -12,7 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ExchangeFragmentPresenter
-@Inject constructor(private val service: PokeCardService, private val context: Context) : BasePresenter<ExchangeView>() {
+@Inject constructor(private val service: PokeCardService, private val context: Context) : BasePresenter<ExchangeView>(), ExchangeRequestsAdapter.ClickOnRecycler {
     fun getExchangeRequestsForUser(userId : UserId,compositeDisposable: CompositeDisposable) {
         compositeDisposable.add(
             service.getExchangeRequestsForUser(userId)
