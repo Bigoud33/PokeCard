@@ -42,7 +42,7 @@ interface PokeCardService {
             Single<PokemonDetails>
 
     @POST("exchanges/")
-    fun getExchangeRequestsForUser():
+    fun getExchangeRequestsForUser(@Body userId: UserId):
             Single<Exchanges>
 
 
