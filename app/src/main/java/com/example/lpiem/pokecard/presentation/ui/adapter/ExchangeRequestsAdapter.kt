@@ -32,7 +32,7 @@ class ExchangeRequestsAdapter(val exchangeRequests : Exchanges, val context: Con
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.bindItems(exchangeRequests.exchanges[position], position)
     }
 
 
