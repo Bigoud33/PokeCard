@@ -17,7 +17,6 @@ import com.example.lpiem.pokecard.presentation.ui.adapter.PokemonAdapter
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_exchange_first_respond.*
-import kotlinx.android.synthetic.main.fragment_pokedex.*
 import javax.inject.Inject
 
 class ExchangeFirstRespondFragment : BaseFragment<ExchangeFirstRespondFragmentPresenter>(), ExchangeFirstRespondView {
@@ -30,8 +29,8 @@ class ExchangeFirstRespondFragment : BaseFragment<ExchangeFirstRespondFragmentPr
         val userIdStr = sharedPreferences?.getString("user-id", "null")
         var bundle = this.arguments
         val exchangeId = bundle!!.getString("exchangeId")
-        val userId = UserId(userIdStr!!)
-        val firstResponse = FirstResponse(exchangeId, userId , pokemonId)
+
+        val firstResponse = FirstResponse(exchangeId, userIdStr!! , pokemonId)
         presenter.respondToExchange(firstResponse, compositeDisposable)
     }
 
