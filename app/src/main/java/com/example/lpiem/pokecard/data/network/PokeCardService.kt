@@ -48,7 +48,7 @@ interface PokeCardService {
     @POST("initexchange/")
     fun initExchangeRequest(@Body exchangeRequest: ExchangeRequest):
             Single<ExchangeServerResponse>
-    @POST("secondrespondtoexchange")
+    @POST("secondrespondtoexchange/")
     fun secondrespondtoexchange(@Body secondResponse : SecondResponse):
             Single<ExchangeServerResponse>
 

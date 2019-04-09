@@ -5,18 +5,20 @@ import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.data.entity.Exchange
 import com.example.lpiem.pokecard.data.entity.Exchanges
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.exchange_request_item.view.*
 
 
 
 
-class ExchangeRequestsAdapter(val exchangeRequests : Exchanges, val context: Context, private val listener: ClickOnRecycler) : RecyclerView.Adapter<ExchangeRequestsAdapter.ViewHolder>()  {
+class ExchangeRequestsAdapter(val exchangeRequests : Exchanges, val context: Context, private val listener: ClickOnRecycler, val compositeDisposable : CompositeDisposable) : RecyclerView.Adapter<ExchangeRequestsAdapter.ViewHolder>()  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view : View = LayoutInflater.from(parent.context).inflate(
@@ -24,7 +26,7 @@ class ExchangeRequestsAdapter(val exchangeRequests : Exchanges, val context: Con
                 parent,
                 false
         )
-        return ViewHolder(view, listener)
+        return ViewHolder(view, listener, compositeDisposable)
     }
 
     override fun getItemCount(): Int {
@@ -36,7 +38,7 @@ class ExchangeRequestsAdapter(val exchangeRequests : Exchanges, val context: Con
     }
 
 
-    class ViewHolder (view: View, private val listener: ClickOnRecycler) : RecyclerView.ViewHolder(view) {
+    class ViewHolder (view: View, private val listener: ClickOnRecycler, val compositeDisposable : CompositeDisposable) : RecyclerView.ViewHolder(view) {
         val context: Context = itemView.context
 
         var tvUserId1 = view.userId1
@@ -63,7 +65,7 @@ class ExchangeRequestsAdapter(val exchangeRequests : Exchanges, val context: Con
             }
 
             itemView.setOnClickListener {
-                listener.showAlertView(data.phase, context)
+                listener.showAlertView(data, context, compositeDisposable)
             }
         }
 
@@ -71,54 +73,6 @@ class ExchangeRequestsAdapter(val exchangeRequests : Exchanges, val context: Con
     }
 
     interface ClickOnRecycler {
-        fun showAlertView(phase : Int, context: Context) {
-            val alertDialogBuilder = AlertDialog.Builder(
-                context
-            )
-
-            // set title
-            alertDialogBuilder.setTitle("Echanger un Pokémon")
-
-            if(phase == 1) {
-                // set dialog message
-                alertDialogBuilder
-                    .setMessage("Vous ne pouvez pas encore accepter l'échange car l'utilisateur 2 n'a pas encore choisi son pokémon, vous pouvez patienter ou annuler l'échange.\nVoulez-vous annuler l'échange ?")
-                    .setCancelable(false)
-                    .setPositiveButton("Oui", DialogInterface.OnClickListener { dialog, id ->
-                        // if this button is clicked, close
-                        // current activity
-
-
-                    })
-                    .setNegativeButton("Non", DialogInterface.OnClickListener { dialog, id ->
-                        // if this button is clicked, just close
-                        // the dialog box and do nothing
-                        dialog.cancel()
-                    })
-            } else {
-                // set dialog message
-                alertDialogBuilder
-                    .setMessage("Acceptez-vous cet échange ?")
-                    .setCancelable(false)
-                    .setPositiveButton("Oui", DialogInterface.OnClickListener { dialog, id ->
-                        // if this button is clicked, close
-                        // current activity
-
-                    })
-                    .setNegativeButton("Non", DialogInterface.OnClickListener { dialog, id ->
-                        // if this button is clicked, just close
-                        // the dialog box and do nothing
-                        dialog.cancel()
-                    })
-            }
-
-
-
-            // create alert dialog
-            val alertDialog = alertDialogBuilder.create()
-
-            // show it
-            alertDialog.show()
-        }
+        fun showAlertView(exchange: Exchange, context: Context, compositeDisposable: CompositeDisposable)
     }
 }

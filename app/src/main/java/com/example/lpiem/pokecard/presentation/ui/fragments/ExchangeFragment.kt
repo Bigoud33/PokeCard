@@ -57,7 +57,7 @@ class ExchangeFragment : BaseFragment<ExchangeFragmentPresenter>(), ExchangeView
 
     override fun showExchangeRequests(exchangeRequests: Exchanges) {
         Log.d("Datas : ", exchangeRequests.toString())
-        val adapter = ExchangeRequestsAdapter(exchangeRequests,context!!, presenter)
+        val adapter = ExchangeRequestsAdapter(exchangeRequests,context!!, presenter, compositeDisposable)
         recyclerViewExchangeRequests.layoutManager = LinearLayoutManager(context)
         recyclerViewExchangeRequests.adapter = adapter
     }
