@@ -48,8 +48,17 @@ interface PokeCardService {
     @POST("initexchange/")
     fun initExchangeRequest(@Body exchangeRequest: ExchangeRequest):
             Single<ExchangeServerResponse>
+
+    @POST("respondtoexchange/")
+    fun respondToExchange(@Body firstResponse: FirstResponse):
+            Single<ExchangeServerResponse>
+
     @POST("secondrespondtoexchange/")
     fun secondrespondtoexchange(@Body secondResponse : SecondResponse):
+            Single<ExchangeServerResponse>
+
+    @POST("cancelexchange/")
+    fun cancelExchange(@Body cancelExchange : CancelExchange):
             Single<ExchangeServerResponse>
 
 

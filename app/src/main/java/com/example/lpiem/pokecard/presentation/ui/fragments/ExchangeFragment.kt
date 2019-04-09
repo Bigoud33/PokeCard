@@ -29,6 +29,7 @@ import javax.inject.Inject
 class ExchangeFragment : BaseFragment<ExchangeFragmentPresenter>(), ExchangeView {
 
 
+
     override val layoutId: Int = R.layout.fragment_exchange_list
     @Inject
     override lateinit var presenter: ExchangeFragmentPresenter
@@ -60,6 +61,17 @@ class ExchangeFragment : BaseFragment<ExchangeFragmentPresenter>(), ExchangeView
         val adapter = ExchangeRequestsAdapter(exchangeRequests,context!!, presenter, compositeDisposable)
         recyclerViewExchangeRequests.layoutManager = LinearLayoutManager(context)
         recyclerViewExchangeRequests.adapter = adapter
+    }
+
+    override fun showExchangeFirstRespondFragment(exchangeId : String) {
+        val fragment = ExchangeFirstRespondFragment()
+        var bundle = Bundle()
+        bundle.putString("exchangeId", exchangeId)
+        fragment.arguments = bundle
+        activity!!.supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.activityContainer, fragment)
+            .commit()
     }
 
     override fun onAttach(context: Context) {
