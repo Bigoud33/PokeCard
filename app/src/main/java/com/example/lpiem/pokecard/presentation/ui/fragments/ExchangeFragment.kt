@@ -46,8 +46,11 @@ class ExchangeFragment : BaseFragment<ExchangeFragmentPresenter>(), ExchangeView
         Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
-    override fun sendExchangeRequest(userIdString: String) {
-        //
+    override fun sendExchangeRequest() {
+        activity!!.supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.activityContainer, ExchangeInitFragment())
+            .commit()
     }
 
     override fun onDestroy() {
@@ -75,7 +78,7 @@ class ExchangeFragment : BaseFragment<ExchangeFragmentPresenter>(), ExchangeView
         val userId = UserId(userIdStr!!)
         presenter.getExchangeRequestsForUser(userId!!, compositeDisposable)
         newExchangeButton.setOnClickListener {
-            sendExchangeRequest(userIdStr)
+            sendExchangeRequest()
         }
     }
 

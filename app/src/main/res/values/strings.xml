@@ -43,4 +43,7 @@
     <string name="pokemonSpriteDesc">Sprite du pokémon</string>
     <string name="exchangeRequests">Demande d\'échanges</string>
     <string name="newExchangeButton">Nouvelle demande d\'échange</string>
+    <string name="userId">Id de l\'utilisateur cible</string>
+    <string name="exchangeInitButton">Créer l\'échange</string>
+    <string name="nonePokemonSelected">Aucun pokemon selectionné</string>
 </resources>
