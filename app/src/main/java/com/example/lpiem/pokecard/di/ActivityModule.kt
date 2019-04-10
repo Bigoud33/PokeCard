@@ -44,4 +44,8 @@ abstract class ActivityModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributePokemonExchangeInitFragment(): ExchangeInitFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun  contributePokemonExchangeFirstRespondFragment(): ExchangeFirstRespondFragment
+
 }

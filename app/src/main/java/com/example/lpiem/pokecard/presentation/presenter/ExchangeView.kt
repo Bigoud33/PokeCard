@@ -11,4 +11,5 @@ interface ExchangeView : BaseView {
     fun showError(errorMessage: String)
     fun sendExchangeRequest()
     fun showExchangeRequests(exchangeRequests: Exchanges)
+    fun showExchangeFirstRespondFragment(exchangeId : String)
 }

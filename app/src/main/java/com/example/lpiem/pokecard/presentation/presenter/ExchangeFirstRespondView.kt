@@ -8,4 +8,6 @@ interface ExchangeFirstRespondView : BaseView {
     fun hideLoader()
     fun showPokemons(pokemonsList: Pokemons)
     fun showError(throwable: Throwable)
+    fun showError2(errorStr : String)
+    fun goNext(pokemonId : String)
 }
