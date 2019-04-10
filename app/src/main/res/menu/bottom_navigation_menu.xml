@@ -14,10 +14,10 @@
             android:title="@string/pokeshop"
             app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/action_fights"
+        android:id="@+id/action_exchanges"
         android:enabled="true"
-        android:icon="@drawable/ic_fights"
-        android:title="@string/fights"
+        android:icon="@drawable/ic_exchange"
+        android:title="@string/exchange"
         app:showAsAction="ifRoom" />
     <item
             android:id="@+id/action_friends"

@@ -1,6 +1,7 @@
 package com.example.lpiem.pokecard.presentation.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,26 +32,25 @@ class PokemonAdapter(private val pokemons: Pokemons, private val listener: Click
 
     class ViewHolder(view: View, private val listener: ClickOnRecycler) : RecyclerView.ViewHolder(view) {
         val context: Context = itemView.context
-        val picture: AppCompatImageView = itemView.pokemonPicture
+        val picture: AppCompatImageView = itemView.pokemonImageView
         val name: AppCompatTextView = itemView.pokemonName
 
         fun bindItems(data: Pokemon, position: Int) {
 
-            name.text = data.name
-            val spriteURL = URL(data.sprite)
+            name.text = data.name.capitalize()
             Glide.with(context)
-                .load(spriteURL)
+                .load(data.sprite)
                 .into(picture)
 
 
 
             itemView.setOnClickListener {
-                listener.itemClicked(position, context)
+                listener.itemClicked(data.id, context)
             }
         }
     }
 
     interface ClickOnRecycler {
-        fun itemClicked(position: Int, context: Context)
+        fun itemClicked(pokemonId: String, context: Context)
     }
 }
