@@ -2,14 +2,9 @@ package com.example.lpiem.pokecard.presentation.ui.fragments
 
 import android.content.Context
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.base.BaseFragment
 import com.example.lpiem.pokecard.data.entity.User
 import com.example.lpiem.pokecard.presentation.presenter.ProfileFragmentPresenter
@@ -29,7 +24,7 @@ class ProfileFragment : BaseFragment<ProfileFragmentPresenter>(), ProfileView {
     override fun showProfile(user: User) {
         userPseudo.text = user.pseudo
         userEmail.text = user.email
-        userId.text = user.id
+        userIdTextEdit.text = user.id
         if (user.picture != null) {
             Picasso.get()
                 .load(user.picture)

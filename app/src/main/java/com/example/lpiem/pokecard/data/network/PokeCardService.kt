@@ -40,4 +40,26 @@ interface PokeCardService {
     @GET("pokemon/{pokemonId}/")
     fun getPokemon(@Path("pokemonId") pokemonId: String):
             Single<PokemonDetails>
+
+    @POST("exchanges/")
+    fun getExchangeRequestsForUser(@Body userId: UserId):
+            Single<Exchanges>
+
+    @POST("initexchange/")
+    fun initExchangeRequest(@Body exchangeRequest: ExchangeRequest):
+            Single<ExchangeServerResponse>
+
+    @POST("respondtoexchange/")
+    fun respondToExchange(@Body firstResponse: FirstResponse):
+            Single<ExchangeServerResponse>
+
+    @POST("secondrespondtoexchange/")
+    fun secondrespondtoexchange(@Body secondResponse : SecondResponse):
+            Single<ExchangeServerResponse>
+
+    @POST("cancelexchange/")
+    fun cancelExchange(@Body cancelExchange : CancelExchange):
+            Single<ExchangeServerResponse>
+
+
 }

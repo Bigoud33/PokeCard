@@ -52,7 +52,7 @@
                 android:text="userId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/userId" app:layout_constraintStart_toEndOf="@+id/Id"
+                android:id="@+id/userIdTextEdit" app:layout_constraintStart_toEndOf="@+id/Id"
                 android:layout_marginStart="16dp"
                 app:layout_constraintTop_toTopOf="@+id/Id" app:layout_constraintBottom_toBottomOf="@+id/Id"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
